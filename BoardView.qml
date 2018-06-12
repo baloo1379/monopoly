@@ -692,6 +692,13 @@ Item {
             y: 0
             width: 61
             height: 22
+            Text {
+                id: price23
+                text: "$"+board.tile(23).Price
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                font.pixelSize: 12
+            }
         }
 
         Item {
@@ -700,6 +707,13 @@ Item {
             y: 0
             width: 60
             height: 22
+            Text {
+                id: price24
+                text: "$"+board.tile(24).Price
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                font.pixelSize: 12
+            }
         }
 
         Item {
@@ -708,6 +722,13 @@ Item {
             y: 53
             width: 60
             height: 25
+            Text {
+                id: price25
+                text: "$"+board.tile(25).Price
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                font.pixelSize: 12
+            }
         }
 
         Item {
@@ -716,6 +737,13 @@ Item {
             y: 0
             width: 60
             height: 22
+            Text {
+                id: price26
+                text: "$"+board.tile(26).Price
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                font.pixelSize: 12
+            }
         }
 
         Item {
@@ -724,6 +752,13 @@ Item {
             y: 0
             width: 59
             height: 22
+            Text {
+                id: price27
+                text: "$"+board.tile(27).Price
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                font.pixelSize: 12
+            }
         }
 
         Item {
@@ -732,6 +767,13 @@ Item {
             y: 0
             width: 60
             height: 22
+            Text {
+                id: price28
+                text: "$"+board.tile(28).Price
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                font.pixelSize: 12
+            }
         }
 
         Item {
@@ -740,6 +782,13 @@ Item {
             y: 0
             width: 58
             height: 22
+            Text {
+                id: price29
+                text: "$"+board.tile(29).Price
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                font.pixelSize: 12
+            }
         }
 
         Item {
@@ -756,6 +805,14 @@ Item {
             y: 105
             width: 22
             height: 60
+            Text {
+                id: price31
+                text: "$"+board.tile(31).Price
+                rotation: 270
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                font.pixelSize: 12
+            }
         }
 
         Item {
@@ -764,6 +821,14 @@ Item {
             y: 168
             width: 22
             height: 59
+            Text {
+                id: price32
+                text: "$"+board.tile(32).Price
+                rotation: 270
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                font.pixelSize: 12
+            }
         }
 
         Item {
@@ -780,6 +845,14 @@ Item {
             y: 292
             width: 22
             height: 61
+            Text {
+                id: price34
+                text: "$"+board.tile(34).Price
+                rotation: 270
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                font.pixelSize: 12
+            }
         }
 
         Item {
@@ -788,6 +861,14 @@ Item {
             y: 356
             width: 24
             height: 59
+            Text {
+                id: price35
+                text: "$"+board.tile(35).Price
+                rotation: 270
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                font.pixelSize: 12
+            }
         }
 
         Item {
@@ -804,6 +885,14 @@ Item {
             y: 480
             width: 22
             height: 61
+            Text {
+                id: price37
+                text: "$"+board.tile(37).Price
+                rotation: 270
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                font.pixelSize: 12
+            }
         }
 
         Item {
@@ -812,6 +901,14 @@ Item {
             y: 544
             width: 22
             height: 57
+            Text {
+                id: price38
+                text: "$"+board.tile(38).Amount
+                rotation: 270
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                font.pixelSize: 12
+            }
         }
 
         Item {
@@ -820,6 +917,14 @@ Item {
             y: 604
             width: 22
             height: 60
+            Text {
+                id: price39
+                text: "$"+board.tile(39).Price
+                rotation: 270
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                font.pixelSize: 12
+            }
         }
 
 
@@ -836,4 +941,8 @@ Item {
 
     }
 
+    Item {
+        id: names
+
+    }
 }
