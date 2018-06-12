@@ -187,7 +187,7 @@ Item {
         y: 114
         width: 300
         height: 90
-        color: "#a4844d"
+        color: "#996600"
         border.width: 1
 
         Button {
@@ -295,7 +295,7 @@ Item {
         y: 114
         width: 300
         height: 90
-        color: "#5380f5"
+        color: "#0066ff"
         border.width: 1
 
         Button {
@@ -451,7 +451,7 @@ Item {
         y: 214
         width: 300
         height: 90
-        color: "#e38cee"
+        color: "#ff3366"
         border.width: 1
 
         Button {
@@ -603,7 +603,7 @@ Item {
         y: 214
         width: 300
         height: 90
-        color: "#fcc65a"
+        color: "#ff6633"
         border.width: 1
 
         Button {
@@ -755,7 +755,7 @@ Item {
         y: 314
         width: 300
         height: 90
-        color: "#f35a5a"
+        color: "#ff3333"
         border.width: 1
 
         Button {
@@ -906,7 +906,7 @@ Item {
         y: 314
         width: 300
         height: 90
-        color: "#fadd4e"
+        color: "#ffff00"
         border.width: 1
 
         Button {
@@ -1058,7 +1058,7 @@ Item {
         y: 414
         width: 300
         height: 90
-        color: "#64ae48"
+        color: "#009966"
         border.width: 1
 
         Button {
@@ -1211,7 +1211,7 @@ Item {
         y: 414
         width: 300
         height: 90
-        color: "#9860b1"
+        color: "#6633cc"
         border.width: 1
 
         Button {
@@ -1353,7 +1353,7 @@ Item {
             id: trainButton2
             width: 135
             height: 30
-            text: qsTr(board.tile(25).Name)
+            text: qsTr(board.tile(15).Name)
             anchors.top: parent.top
             anchors.topMargin: 10
             anchors.right: parent.right
