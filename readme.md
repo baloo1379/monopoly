@@ -1,2 +1,2 @@
 # Monopoly
-Simple game written in c++ using Qt 5.11
+a simple game written in C++ using Qt 5.11
