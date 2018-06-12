@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Wizard.qml</file>
+        <file>BoardView.qml</file>
+        <file>PawnView.qml</file>
+        <file>DevView.qml</file>
+        <file>Konsola.qml</file>
+        <file>Ekran.qml</file>
+        <file>ApartamentsView.qml</file>
+        <file>PropertyView.qml</file>
+        <file>monopoly.png</file>
+        <file>Fonts/Kabel Book BT.ttf</file>
+        <file>Fonts/KabobBlack Regular.ttf</file>
+        <file>Fonts/KabobExtrabold Regular.ttf</file>
+        <file>Fonts/KabobLight Regular.ttf</file>
+    </qresource>
+</RCC>
