@@ -22,8 +22,8 @@ Window {
     visible: true
     width: 1366
     height: 768
-    flags: Qt.WindowFullScreen
-    visibility: Window.FullScreen
+    //flags: Qt.WindowFullScreen
+    //visibility: Window.FullScreen
     title: qsTr("Monopoly")
 
     Item {
