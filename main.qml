@@ -20,8 +20,10 @@ import Monopoly.NeighbourHoodType 1.0
 Window {
     id: mainWindows
     visible: true
-    width: 1024
+    width: 1366
     height: 768
+    flags: Qt.WindowFullScreen
+    visibility: Window.FullScreen
     title: qsTr("Monopoly")
 
     Item {
@@ -102,6 +104,18 @@ Window {
             {
                 fourthM.visible = true
             }
+        }
+    }
+
+    Button {
+        id: closeButton
+        text: qsTr("Wyjście")
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 20
+        anchors.right: parent.right
+        anchors.rightMargin: 20
+        onClicked: {
+            mainWindows.close()
         }
     }
 
@@ -211,39 +225,6 @@ Window {
                         {
                             cp.ColorsComplete[ctile.Neighbourhood] = true
                         }
-
-                        /*
-                        switch(board.tile(board.player(board.currentPlayerIndex).Position).Neighbourhood)
-                        {
-                        case NeighbourHoodType.Brown:
-                            board.player(board.currentPlayerIndex).Colors[0] += 1
-                            break
-                        case NeighbourHoodType.Blue:
-                            board.player(board.currentPlayerIndex).Colors[1] += 1
-                            break
-                        case NeighbourHoodType.HotPink:
-                            board.player(board.currentPlayerIndex).Colors[2] += 1
-                            break
-                        case NeighbourHoodType.Orange:
-                            board.player(board.currentPlayerIndex).Colors[3] += 1
-                            break
-                        case NeighbourHoodType.Red:
-                            board.player(board.currentPlayerIndex).Colors[4] += 1
-                            break
-                        case NeighbourHoodType.Yellow:
-                            board.player(board.currentPlayerIndex).Colors[5] += 1
-                            break
-                        case NeighbourHoodType.Green:
-                            board.player(board.currentPlayerIndex).Colors[6] += 1
-                            break
-                        case NeighbourHoodType.Purple:
-                            board.player(board.currentPlayerIndex).Colors[7] += 1
-                            break
-                        default:
-                            break
-
-                        }
-                        */
                         cp.Streets++
                     }
                     if(board.tile(board.player(board.currentPlayerIndex).Position).Type === TileType.Station) {
@@ -614,4 +595,3 @@ Window {
     }
 
 }
-

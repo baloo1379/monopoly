@@ -4,7 +4,9 @@ import QtQuick.Controls.Styles 1.4
 
 Item {
     id: view
-    width: 1024
+    //width: parent.width
+    //height: parent.height
+    width: 1366
     height: 768
     visible: true
 
@@ -147,16 +149,14 @@ Item {
     }
 
 
-    Button {
-        id: button
-        x: 722
-        y: 614
-        text: qsTr("Wyjdź")
-        font.weight: Font.ExtraLight
-        z: 2
-        onClicked: {
-            parent.hide();
-        }
+    Rectangle {
+        id: bgFocus
+        width: parent.width
+        height: parent.height
+        color: "#ffffff"
+        enabled: false
+        opacity: 0.7
+        z: -1
     }
 
     Rectangle {
@@ -170,1362 +170,1403 @@ Item {
         anchors.verticalCenter: parent.verticalCenter
         border.color: "#999999"
         border.width: 2
-    }
 
-    Rectangle {
-        id: bgFocus
-        width: 1024
-        height: 768
-        color: "#ffffff"
-        opacity: 0.4
-        z: -1
-    }
-
-    Rectangle {
-        id: brown
-        x: 202
-        y: 114
-        width: 300
-        height: 90
-        color: "#996600"
-        border.width: 1
-
-        Button {
-            id: button1
-            y: 15
-            width: 135
-            height: 70
-            text: qsTr(board.tile(1).Name)
-            anchors.verticalCenter: parent.verticalCenter
+        Rectangle {
+            id: textOutput
+            y: 510
+            width: 507
+            height: 40
+            color: "#ffffff"
             anchors.left: parent.left
             anchors.leftMargin: 10
-            highlighted: false
-            hoverEnabled: false
-            focusPolicy: Qt.NoFocus
-            enabled: false
-            clip: false
-            checkable: false
-            checked: false
-            autoRepeat: false
-            autoExclusive: false
-            contentItem: Text {
-                color: parent.enabled ? "#000000" : "#5b5b5b"
-                text: parent.text
-                font: parent.font
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-                wrapMode: Text.WordWrap
-
-            }
-            onClicked: {
-                if(board.player(board.currentPlayerIndex).Colors[board.tile(1).Neighbourhood] === 2)
-                {
-                    var cplayer = board.player(board.currentPlayerIndex)
-                    var ctile = board.tile(1)
-                    var color = ctile.Neighbourhood
-                    //consoleNot.push("Informacje o polu")
-                    //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
-                    if(ctile.BoughtedHouses < 4) {
-                        text1.text = ctile.buyHouse(cplayer)
-                    }
-                    else {
-                        text1.text = view.danied
-                    }
-                    monopolyStateMachine.updateMoney();
-                }
-                else text1.text = view.daniedNg
-            }
-        }
-
-        Button {
-            id: button3
-            x: 162
-            y: 15
-            width: 135
-            height: 70
-            text: qsTr(board.tile(3).Name)
-            anchors.verticalCenterOffset: 0
-            anchors.right: parent.right
-            anchors.rightMargin: 10
-            anchors.verticalCenter: parent.verticalCenter
-            enabled: false
-            focusPolicy: Qt.NoFocus
-            hoverEnabled: false
-            autoRepeat: false
-            autoExclusive: false
-            clip: false
-            highlighted: false
-            checked: false
-            checkable: false
-            contentItem: Text {
-                color: parent.enabled ? "#000000" : "#5b5b5b"
-                text: parent.text
-                font: parent.font
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-                wrapMode: Text.WordWrap
-            }
-            onClicked: {
-                if(board.player(board.currentPlayerIndex).Colors[board.tile(3).Neighbourhood] === 2)
-                {
-                    var cplayer = board.player(board.currentPlayerIndex)
-                    var ctile = board.tile(3)
-                    var color = ctile.Neighbourhood
-                    //consoleNot.push("Informacje o polu")
-                    //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
-                    if(ctile.BoughtedHouses < 4) {
-                        text1.text = ctile.buyHouse(cplayer)
-                    }
-                    else {
-                        text1.text = view.danied
-                    }
-                    monopolyStateMachine.updateMoney();
-                }
-                else text1.text = view.daniedNg
-
-            }
-        }
-    }
-
-    Rectangle {
-        id: blue
-        x: 522
-        y: 114
-        width: 300
-        height: 90
-        color: "#0066ff"
-        border.width: 1
-
-        Button {
-            id: button6
-            y: 15
-            width: 87
-            height: 70
-            text: qsTr(board.tile(6).Name)
-            font.capitalization: Font.MixedCase
-            wheelEnabled: false
-            spacing: 4
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            anchors.leftMargin: 10
-            enabled: false
-            focusPolicy: Qt.NoFocus
-            hoverEnabled: false
-            autoRepeat: false
-            autoExclusive: false
-            clip: false
-            highlighted: false
-            checked: false
-            checkable: false
-            contentItem: Text {
-                color: parent.enabled ? "#000000" : "#5b5b5b"
-                text: parent.text
-                font: parent.font
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-                wrapMode: Text.WordWrap
-            }
-            onClicked: {
-                if(board.player(board.currentPlayerIndex).Colors[board.tile(6).Neighbourhood] === 3)
-                {
-                    var cplayer = board.player(board.currentPlayerIndex)
-                    var ctile = board.tile(6)
-                    var color = ctile.Neighbourhood
-                    //consoleNot.push("Informacje o polu")
-                    //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
-                    if(ctile.BoughtedHouses < 4) {
-                        text1.text = ctile.buyHouse(cplayer)
-                    }
-                    else {
-                        text1.text = view.danied
-                    }
-                    monopolyStateMachine.updateMoney();
-                }
-                else text1.text = view.daniedNg
-
-            }
-        }
-
-        Button {
-            id: button8
-            x: -210
-            y: 15
-            width: 87
-            height: 70
-            text: qsTr(board.tile(8).Name)
-            enabled: false
-            focusPolicy: Qt.NoFocus
-            hoverEnabled: false
-            autoRepeat: false
-            clip: false
-            autoExclusive: false
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.horizontalCenter: parent.horizontalCenter
-            highlighted: false
-            checked: false
-            checkable: false
-            contentItem: Text {
-                color: parent.enabled ? "#000000" : "#5b5b5b"
-                text: parent.text
-                font: parent.font
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-                wrapMode: Text.WordWrap
-            }
-            onClicked: {
-                if(board.player(board.currentPlayerIndex).Colors[board.tile(8).Neighbourhood] === 3)
-                {
-                    var cplayer = board.player(board.currentPlayerIndex)
-                    var ctile = board.tile(8)
-                    var color = ctile.Neighbourhood
-                    //consoleNot.push("Informacje o polu")
-                    //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
-                    if(ctile.BoughtedHouses < 4) {
-                        text1.text = ctile.buyHouse(cplayer)
-                    }
-                    else {
-                        text1.text = view.danied
-                    }
-                    monopolyStateMachine.updateMoney();
-                }
-                else text1.text = view.daniedNg
-            }
-        }
-
-        Button {
-            id: button9
-            x: 196
-            y: 15
-            width: 87
-            height: 70
-            text: qsTr(board.tile(9).Name)
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.right: parent.right
-            anchors.rightMargin: 10
-            enabled: false
-            focusPolicy: Qt.NoFocus
-            hoverEnabled: false
-            autoRepeat: false
-            autoExclusive: false
-            clip: false
-            highlighted: false
-            checked: false
-            checkable: false
-            contentItem: Text {
-                color: parent.enabled ? "#000000" : "#5b5b5b"
-                text: parent.text
-                font: parent.font
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-                wrapMode: Text.WordWrap
-            }
-            onClicked: {
-                if(board.player(board.currentPlayerIndex).Colors[board.tile(9).Neighbourhood] === 3)
-                {
-                    var cplayer = board.player(board.currentPlayerIndex)
-                    var ctile = board.tile(9)
-                    var color = ctile.Neighbourhood
-                    //consoleNot.push("Informacje o polu")
-                    //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
-                    if(ctile.BoughtedHouses < 4) {
-                        text1.text = ctile.buyHouse(cplayer)
-                    }
-                    else {
-                        text1.text = view.danied
-                    }
-                    monopolyStateMachine.updateMoney();
-                }
-                else text1.text = view.daniedNg
-            }
-        }
-    }
-
-    Rectangle {
-        id: hotPink
-        x: 202
-        y: 214
-        width: 300
-        height: 90
-        color: "#ff3366"
-        border.width: 1
-
-        Button {
-            id: button13
-            x: -300
-            y: 15
-            width: 87
-            height: 70
-            text:  qsTr(board.tile(13).Name)
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.verticalCenter: parent.verticalCenter
-            enabled: false
-            focusPolicy: Qt.NoFocus
-            hoverEnabled: false
-            autoRepeat: false
-            clip: false
-            autoExclusive: false
-            highlighted: false
-            checked: false
-            checkable: false
-            contentItem: Text {
-                color: parent.enabled ? "#000000" : "#5b5b5b"
-                text: parent.text
-                font: parent.font
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-                wrapMode: Text.WordWrap
-            }
-            onClicked: {
-                if(board.player(board.currentPlayerIndex).Colors[board.tile(13).Neighbourhood] === 3)
-                {
-                    var cplayer = board.player(board.currentPlayerIndex)
-                    var ctile = board.tile(13)
-                    var color = ctile.Neighbourhood
-                    //consoleNot.push("Informacje o polu")
-                    //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
-                    if(ctile.BoughtedHouses < 4) {
-                        text1.text = ctile.buyHouse(cplayer)
-                    }
-                    else {
-                        text1.text = view.danied
-                    }
-                    monopolyStateMachine.updateMoney();
-                }
-                else text1.text = view.daniedNg
-            }
-        }
-
-        Button {
-            id: button14
-            x: -210
-            y: 15
-            width: 87
-            height: 70
-            text:  qsTr(board.tile(14).Name)
-            anchors.right: parent.right
-            anchors.rightMargin: 10
-            enabled: false
-            focusPolicy: Qt.NoFocus
-            hoverEnabled: false
-            autoRepeat: false
-            autoExclusive: false
-            clip: false
-            anchors.verticalCenter: parent.verticalCenter
-            highlighted: false
-            checked: false
-            checkable: false
-            contentItem: Text {
-                color: parent.enabled ? "#000000" : "#5b5b5b"
-                text: parent.text
-                font: parent.font
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-                wrapMode: Text.WordWrap
-            }
-            onClicked: {
-                if(board.player(board.currentPlayerIndex).Colors[board.tile(14).Neighbourhood] === 3)
-                {
-                    var cplayer = board.player(board.currentPlayerIndex)
-                    var ctile = board.tile(14)
-                    var color = ctile.Neighbourhood
-                    //consoleNot.push("Informacje o polu")
-                    //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
-                    if(ctile.BoughtedHouses < 4) {
-                        text1.text = ctile.buyHouse(cplayer)
-                    }
-                    else {
-                        text1.text = view.danied
-                    }
-                    monopolyStateMachine.updateMoney();
-                }
-                else text1.text = view.daniedNg
-            }
-        }
-
-        Button {
-            id: button11
-            y: 15
-            width: 87
-            height: 70
-            text:  qsTr(board.tile(11).Name)
-            anchors.verticalCenter: parent.verticalCenter
-            enabled: false
-            focusPolicy: Qt.NoFocus
-            hoverEnabled: false
-            anchors.left: parent.left
-            autoRepeat: false
-            clip: false
-            autoExclusive: false
-            highlighted: false
-            anchors.leftMargin: 10
-            checked: false
-            checkable: false
-            contentItem: Text {
-                color: parent.enabled ? "#000000" : "#5b5b5b"
-                text: parent.text
-                font: parent.font
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-                wrapMode: Text.WordWrap
-            }
-            onClicked: {
-                if(board.player(board.currentPlayerIndex).Colors[board.tile(11).Neighbourhood] === 3)
-                {
-                    var cplayer = board.player(board.currentPlayerIndex)
-                    var ctile = board.tile(11)
-                    var color = ctile.Neighbourhood
-                    //consoleNot.push("Informacje o polu")
-                    //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
-                    if(ctile.BoughtedHouses < 4) {
-                        text1.text = ctile.buyHouse(cplayer)
-                    }
-                    else {
-                        text1.text = view.danied
-                    }
-                    monopolyStateMachine.updateMoney();
-                }
-                else text1.text = view.daniedNg
-            }
-        }
-    }
-
-    Rectangle {
-        id: orange
-        x: 522
-        y: 214
-        width: 300
-        height: 90
-        color: "#ff6633"
-        border.width: 1
-
-        Button {
-            id: button16
-            y: 15
-            width: 87
-            height: 70
-            text:  qsTr(board.tile(16).Name)
-            anchors.left: parent.left
-            anchors.leftMargin: 10
-            anchors.verticalCenter: parent.verticalCenter
-            enabled: false
-            focusPolicy: Qt.NoFocus
-            hoverEnabled: false
-            autoRepeat: false
-            autoExclusive: false
-            clip: false
-            highlighted: false
-            checked: false
-            checkable: false
-            contentItem: Text {
-                color: parent.enabled ? "#000000" : "#5b5b5b"
-                text: parent.text
-                font: parent.font
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-                wrapMode: Text.WordWrap
-            }
-            onClicked: {
-                if(board.player(board.currentPlayerIndex).Colors[board.tile(16).Neighbourhood] === 3)
-                {
-                    var cplayer = board.player(board.currentPlayerIndex)
-                    var ctile = board.tile(16)
-                    var color = ctile.Neighbourhood
-                    //consoleNot.push("Informacje o polu")
-                    //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
-                    if(ctile.BoughtedHouses < 4) {
-                        text1.text = ctile.buyHouse(cplayer)
-                    }
-                    else {
-                        text1.text = view.danied
-                    }
-                    monopolyStateMachine.updateMoney();
-                }
-                else text1.text = view.daniedNg
-            }
-        }
-
-        Button {
-            id: button18
-            x: -210
-            y: 15
-            width: 87
-            height: 70
-            text:  qsTr(board.tile(18).Name)
-            enabled: false
-            focusPolicy: Qt.NoFocus
-            hoverEnabled: false
-            autoRepeat: false
-            clip: false
-            autoExclusive: false
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.horizontalCenter: parent.horizontalCenter
-            highlighted: false
-            checked: false
-            checkable: false
-            contentItem: Text {
-                color: parent.enabled ? "#000000" : "#5b5b5b"
-                text: parent.text
-                font: parent.font
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-                wrapMode: Text.WordWrap
-            }
-            onClicked: {
-                if(board.player(board.currentPlayerIndex).Colors[board.tile(18).Neighbourhood] === 3)
-                {
-                    var cplayer = board.player(board.currentPlayerIndex)
-                    var ctile = board.tile(18)
-                    var color = ctile.Neighbourhood
-                    //consoleNot.push("Informacje o polu")
-                    //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
-                    if(ctile.BoughtedHouses < 4) {
-                        text1.text = ctile.buyHouse(cplayer)
-                    }
-                    else {
-                        text1.text = view.danied
-                    }
-                    monopolyStateMachine.updateMoney();
-                }
-                else text1.text = view.daniedNg
-            }
-        }
-
-        Button {
-            id: button19
-            y: 15
-            width: 87
-            height: 70
-            text:  qsTr(board.tile(19).Name)
-            anchors.right: parent.right
-            anchors.rightMargin: 10
-            anchors.verticalCenter: parent.verticalCenter
-            enabled: false
-            focusPolicy: Qt.NoFocus
-            hoverEnabled: false
-            autoRepeat: false
-            autoExclusive: false
-            clip: false
-            anchors.leftMargin: 10
-            highlighted: false
-            checked: false
-            checkable: false
-            contentItem: Text {
-                color: parent.enabled ? "#000000" : "#5b5b5b"
-                text: parent.text
-                font: parent.font
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-                wrapMode: Text.WordWrap
-            }
-            onClicked: {
-                if(board.player(board.currentPlayerIndex).Colors[board.tile(19).Neighbourhood] === 3)
-                {
-                    var cplayer = board.player(board.currentPlayerIndex)
-                    var ctile = board.tile(19)
-                    var color = ctile.Neighbourhood
-                    //consoleNot.push("Informacje o polu")
-                    //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
-                    if(ctile.BoughtedHouses < 4) {
-                        text1.text = ctile.buyHouse(cplayer)
-                    }
-                    else {
-                        text1.text = view.danied
-                    }
-                    monopolyStateMachine.updateMoney();
-                }
-                else text1.text = view.daniedNg
-            }
-        }
-    }
-
-    Rectangle {
-        id: red
-        x: 202
-        y: 314
-        width: 300
-        height: 90
-        color: "#ff3333"
-        border.width: 1
-
-        Button {
-            id: button21
-            y: 15
-            width: 87
-            height: 70
-            text: qsTr(board.tile(21).Name)
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            anchors.leftMargin: 10
-            enabled: false
-            focusPolicy: Qt.NoFocus
-            hoverEnabled: false
-            autoRepeat: false
-            autoExclusive: false
-            clip: false
-            highlighted: false
-            checked: false
-            checkable: false
-            contentItem: Text {
-                color: parent.enabled ? "#000000" : "#5b5b5b"
-                text: parent.text
-                font: parent.font
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-                wrapMode: Text.WordWrap
-            }
-            onClicked: {
-                if(board.player(board.currentPlayerIndex).Colors[board.tile(21).Neighbourhood] === 3)
-                {
-                    var cplayer = board.player(board.currentPlayerIndex)
-                    var ctile = board.tile(21)
-                    var color = ctile.Neighbourhood
-                    //consoleNot.push("Informacje o polu")
-                    //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
-                    if(ctile.BoughtedHouses < 4) {
-                        text1.text = ctile.buyHouse(cplayer)
-                    }
-                    else {
-                        text1.text = view.danied
-                    }
-                    monopolyStateMachine.updateMoney();
-                }
-                else text1.text = view.daniedNg
-            }
-        }
-
-        Button {
-            id: button23
-            x: -210
-            y: 15
-            width: 87
-            height: 70
-            text: qsTr(board.tile(23).Name)
-            enabled: false
-            focusPolicy: Qt.NoFocus
-            hoverEnabled: false
-            autoRepeat: false
-            clip: false
-            autoExclusive: false
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.horizontalCenter: parent.horizontalCenter
-            highlighted: false
-            checked: false
-            checkable: false
-            contentItem: Text {
-                color: parent.enabled ? "#000000" : "#5b5b5b"
-                text: parent.text
-                font: parent.font
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-                wrapMode: Text.WordWrap
-            }
-            onClicked: {
-                if(board.player(board.currentPlayerIndex).Colors[board.tile(23).Neighbourhood] === 3)
-                {
-                    var cplayer = board.player(board.currentPlayerIndex)
-                    var ctile = board.tile(23)
-                    var color = ctile.Neighbourhood
-                    //consoleNot.push("Informacje o polu")
-                    //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
-                    if(ctile.BoughtedHouses < 4) {
-                        text1.text = ctile.buyHouse(cplayer)
-                    }
-                    else {
-                        text1.text = view.danied
-                    }
-                    monopolyStateMachine.updateMoney();
-                }
-                else text1.text = view.daniedNg
-            }
-        }
-
-        Button {
-            id: button24
-            y: 15
-            width: 87
-            height: 70
-            text: qsTr(board.tile(24).Name)
-            anchors.right: parent.right
-            anchors.rightMargin: 10
-            anchors.verticalCenter: parent.verticalCenter
-            enabled: false
-            focusPolicy: Qt.NoFocus
-            hoverEnabled: false
-            autoRepeat: false
-            autoExclusive: false
-            clip: false
-            highlighted: false
-            checked: false
-            checkable: false
-            contentItem: Text {
-                color: parent.enabled ? "#000000" : "#5b5b5b"
-                text: parent.text
-                font: parent.font
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-                wrapMode: Text.WordWrap
-            }
-            onClicked: {
-                if(board.player(board.currentPlayerIndex).Colors[board.tile(24).Neighbourhood] === 3)
-                {
-                    var cplayer = board.player(board.currentPlayerIndex)
-                    var ctile = board.tile(24)
-                    var color = ctile.Neighbourhood
-                    //consoleNot.push("Informacje o polu")
-                    //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
-                    if(ctile.BoughtedHouses < 4) {
-                        text1.text = ctile.buyHouse(cplayer)
-                    }
-                    else {
-                        text1.text = view.danied
-                    }
-                    monopolyStateMachine.updateMoney();
-                }
-                else text1.text = view.daniedNg
-            }
-        }
-    }
-
-    Rectangle {
-        id: yellow
-        x: 522
-        y: 314
-        width: 300
-        height: 90
-        color: "#ffff00"
-        border.width: 1
-
-        Button {
-            id: button26
-            y: 15
-            width: 87
-            height: 70
-            text: qsTr(board.tile(26).Name)
-            anchors.left: parent.left
-            anchors.leftMargin: 10
-            anchors.verticalCenter: parent.verticalCenter
-            enabled: false
-            focusPolicy: Qt.NoFocus
-            hoverEnabled: false
-            autoRepeat: false
-            autoExclusive: false
-            clip: false
-            highlighted: false
-            checked: false
-            checkable: false
-            contentItem: Text {
-                color: parent.enabled ? "#000000" : "#5b5b5b"
-                text: parent.text
-                font: parent.font
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-                wrapMode: Text.WordWrap
-            }
-            onClicked: {
-                if(board.player(board.currentPlayerIndex).Colors[board.tile(26).Neighbourhood] === 3)
-                {
-                    var cplayer = board.player(board.currentPlayerIndex)
-                    var ctile = board.tile(26)
-                    var color = ctile.Neighbourhood
-                    //consoleNot.push("Informacje o polu")
-                    //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
-                    if(ctile.BoughtedHouses < 4) {
-                        text1.text = ctile.buyHouse(cplayer)
-                    }
-                    else {
-                        text1.text = view.danied
-                    }
-                    monopolyStateMachine.updateMoney();
-                }
-                else text1.text = view.daniedNg
-            }
-        }
-
-        Button {
-            id: button27
-            x: -210
-            y: 15
-            width: 87
-            height: 70
-            text: qsTr(board.tile(27).Name)
-            enabled: false
-            focusPolicy: Qt.NoFocus
-            hoverEnabled: false
-            autoRepeat: false
-            clip: false
-            autoExclusive: false
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.horizontalCenter: parent.horizontalCenter
-            highlighted: false
-            checked: false
-            checkable: false
-            contentItem: Text {
-                color: parent.enabled ? "#000000" : "#5b5b5b"
-                text: parent.text
-                font: parent.font
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-                wrapMode: Text.WordWrap
-            }
-            onClicked: {
-                if(board.player(board.currentPlayerIndex).Colors[board.tile(27).Neighbourhood] === 3)
-                {
-                    var cplayer = board.player(board.currentPlayerIndex)
-                    var ctile = board.tile(27)
-                    var color = ctile.Neighbourhood
-                    //consoleNot.push("Informacje o polu")
-                    //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
-                    if(ctile.BoughtedHouses < 4) {
-                        text1.text = ctile.buyHouse(cplayer)
-                    }
-                    else {
-                        text1.text = view.danied
-                    }
-                    monopolyStateMachine.updateMoney();
-                }
-                else text1.text = view.daniedNg
-            }
-        }
-
-        Button {
-            id: button29
-            y: 15
-            width: 87
-            height: 70
-            text: qsTr(board.tile(29).Name)
-            anchors.right: parent.right
-            anchors.rightMargin: 10
-            anchors.verticalCenter: parent.verticalCenter
-            enabled: false
-            focusPolicy: Qt.NoFocus
-            hoverEnabled: false
-            autoRepeat: false
-            autoExclusive: false
-            clip: false
-            anchors.leftMargin: 10
-            highlighted: false
-            checked: false
-            checkable: false
-            contentItem: Text {
-                color: parent.enabled ? "#000000" : "#5b5b5b"
-                text: parent.text
-                font: parent.font
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-                wrapMode: Text.WordWrap
-            }
-            onClicked: {
-                if(board.player(board.currentPlayerIndex).Colors[board.tile(29).Neighbourhood] === 3)
-                {
-                    var cplayer = board.player(board.currentPlayerIndex)
-                    var ctile = board.tile(29)
-                    var color = ctile.Neighbourhood
-                    //consoleNot.push("Informacje o polu")
-                    //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
-                    if(ctile.BoughtedHouses < 4) {
-                        text1.text = ctile.buyHouse(cplayer)
-                    }
-                    else {
-                        text1.text = view.danied
-                    }
-                    monopolyStateMachine.updateMoney();
-                }
-                else text1.text = view.daniedNg
-            }
-        }
-    }
-
-    Rectangle {
-        id: green
-        x: 202
-        y: 414
-        width: 300
-        height: 90
-        color: "#009966"
-        border.width: 1
-
-        Button {
-            id: button31
-            y: 15
-            width: 87
-            height: 70
-            text: qsTr(board.tile(31).Name)
-            anchors.left: parent.left
-            anchors.leftMargin: 10
-            anchors.verticalCenter: parent.verticalCenter
-            enabled: false
-            focusPolicy: Qt.NoFocus
-            hoverEnabled: false
-            autoRepeat: false
-            autoExclusive: false
-            clip: false
-            highlighted: false
-            checked: false
-            checkable: false
-            contentItem: Text {
-                color: parent.enabled ? "#000000" : "#5b5b5b"
-                text: parent.text
-                font: parent.font
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-                wrapMode: Text.WordWrap
-            }
-            onClicked: {
-                if(board.player(board.currentPlayerIndex).Colors[board.tile(31).Neighbourhood] === 3)
-                {
-                    var cplayer = board.player(board.currentPlayerIndex)
-                    var ctile = board.tile(31)
-                    var color = ctile.Neighbourhood
-                    //consoleNot.push("Informacje o polu")
-                    //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
-                    if(ctile.BoughtedHouses < 4) {
-                        text1.text = ctile.buyHouse(cplayer)
-                    }
-                    else {
-                        text1.text = view.danied
-                    }
-                    monopolyStateMachine.updateMoney();
-                }
-                else text1.text = view.daniedNg
-            }
-        }
-
-        Button {
-            id: button32
-            x: -210
-            y: 15
-            width: 87
-            height: 70
-            text: qsTr(board.tile(32).Name)
-            enabled: false
-            focusPolicy: Qt.NoFocus
-            hoverEnabled: false
-            autoRepeat: false
-            clip: false
-            autoExclusive: false
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.horizontalCenter: parent.horizontalCenter
-            highlighted: false
-            checked: false
-            checkable: false
-            contentItem: Text {
-                color: parent.enabled ? "#000000" : "#5b5b5b"
-                text: parent.text
-                font: parent.font
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-                wrapMode: Text.WordWrap
-            }
-            onClicked: {
-                if(board.player(board.currentPlayerIndex).Colors[board.tile(32).Neighbourhood] === 3)
-                {
-                    var cplayer = board.player(board.currentPlayerIndex)
-                    var ctile = board.tile(32)
-                    var color = ctile.Neighbourhood
-                    //consoleNot.push("Informacje o polu")
-                    //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
-                    if(ctile.BoughtedHouses < 4) {
-                        text1.text = ctile.buyHouse(cplayer)
-                    }
-                    else {
-                        text1.text = view.danied
-                    }
-                    monopolyStateMachine.updateMoney();
-                }
-                else text1.text = view.daniedNg
-            }
-        }
-
-        Button {
-            id: button34
-            y: 15
-            width: 87
-            height: 70
-            text: qsTr(board.tile(34).Name)
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.right: parent.right
-            anchors.rightMargin: 10
-            enabled: false
-            focusPolicy: Qt.NoFocus
-            hoverEnabled: false
-            autoRepeat: false
-            autoExclusive: false
-            clip: false
-            anchors.leftMargin: 10
-            highlighted: false
-            checked: false
-            checkable: false
-            contentItem: Text {
-                color: parent.enabled ? "#000000" : "#5b5b5b"
-                text: parent.text
-                font: parent.font
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-                wrapMode: Text.WordWrap
-            }
-            onClicked: {
-                if(board.player(board.currentPlayerIndex).Colors[board.tile(34).Neighbourhood] === 3)
-                {
-                    var cplayer = board.player(board.currentPlayerIndex)
-                    var ctile = board.tile(34)
-                    var color = ctile.Neighbourhood
-                    //consoleNot.push("Informacje o polu")
-                    //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
-                    if(ctile.BoughtedHouses < 4) {
-                        text1.text = ctile.buyHouse(cplayer)
-                    }
-                    else {
-                        text1.text = view.danied
-                    }
-                    monopolyStateMachine.updateMoney();
-                }
-                else text1.text = view.daniedNg
-            }
-
-        }
-    }
-
-    Rectangle {
-        id: purple
-        x: 522
-        y: 414
-        width: 300
-        height: 90
-        color: "#6633cc"
-        border.width: 1
-
-        Button {
-            id: button37
-            y: 15
-            width: 135
-            height: 70
-            text:  qsTr(board.tile(37).Name)
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.left
-            anchors.leftMargin: 10
-            enabled: false
-            focusPolicy: Qt.NoFocus
-            hoverEnabled: false
-            autoRepeat: false
-            autoExclusive: false
-            clip: false
-            highlighted: false
-            checked: false
-            checkable: false
-            contentItem: Text {
-                color: parent.enabled ? "#000000" : "#5b5b5b"
-                text: parent.text
-                font: parent.font
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-                wrapMode: Text.WordWrap
-            }
-            onClicked: {
-                if(board.player(board.currentPlayerIndex).Colors[board.tile(37).Neighbourhood] === 3)
-                {
-                    var cplayer = board.player(board.currentPlayerIndex)
-                    var ctile = board.tile(37)
-                    var color = ctile.Neighbourhood
-                    //consoleNot.push("Informacje o polu")
-                    //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
-                    if(ctile.BoughtedHouses < 4) {
-                        text1.text = ctile.buyHouse(cplayer)
-                    }
-                    else {
-                        text1.text = view.danied
-                    }
-                    monopolyStateMachine.updateMoney();
-                }
-                else text1.text = view.daniedNg
-            }
-        }
-
-        Button {
-            id: button39
-            x: -210
-            y: 15
-            width: 135
-            height: 70
-            text: qsTr(board.tile(39).Name)
-            anchors.right: parent.right
-            anchors.rightMargin: 10
-            enabled: false
-            focusPolicy: Qt.NoFocus
-            hoverEnabled: false
-            autoRepeat: false
-            clip: false
-            autoExclusive: false
-            anchors.verticalCenter: parent.verticalCenter
-            highlighted: false
-            checked: false
-            checkable: false
-            contentItem: Text {
-                color: parent.enabled ? "#000000" : "#5b5b5b"
-                text: parent.text
-                font: parent.font
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-                wrapMode: Text.WordWrap
-            }
-            onClicked: {
-                if(board.player(board.currentPlayerIndex).Colors[board.tile(39).Neighbourhood] === 3)
-                {
-                    var cplayer = board.player(board.currentPlayerIndex)
-                    var ctile = board.tile(39)
-                    var color = ctile.Neighbourhood
-                    //consoleNot.push("Informacje o polu")
-                    //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
-                    if(ctile.BoughtedHouses < 4) {
-                        text1.text = ctile.buyHouse(cplayer)
-                    }
-                    else {
-                        text1.text = view.danied
-                    }
-                    monopolyStateMachine.updateMoney();
-                }
-                else text1.text = view.daniedNg
-            }
-        }
-
-    }
-
-    Rectangle {
-        id: trains
-        x: 202
-        y: 514
-        width: 300
-        height: 90
-        color: "#999999"
-        border.width: 1
-
-        Button {
-            id: trainButton1
-            width: 135
-            height: 30
-            text:  qsTr(board.tile(5).Name)
-            anchors.top: parent.top
-            anchors.topMargin: 10
-            anchors.left: parent.left
-            anchors.leftMargin: 10
-            enabled: false
-            focusPolicy: Qt.NoFocus
-            hoverEnabled: false
-            autoRepeat: false
-            clip: false
-            autoExclusive: false
-            highlighted: false
-            checked: false
-            checkable: false
-            contentItem: Text {
-                color: parent.enabled ? "#000000" : "#5b5b5b"
-                text: parent.text
-                font: parent.font
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-                wrapMode: Text.WordWrap
-            }
-        }
-
-        Button {
-            id: trainButton2
-            width: 135
-            height: 30
-            text: qsTr(board.tile(15).Name)
-            anchors.top: parent.top
-            anchors.topMargin: 10
-            anchors.right: parent.right
-            anchors.rightMargin: 10
-            enabled: false
-            focusPolicy: Qt.NoFocus
-            hoverEnabled: false
-            autoRepeat: false
-            autoExclusive: false
-            clip: false
-            highlighted: false
-            checked: false
-            checkable: false
-            contentItem: Text {
-                color: parent.enabled ? "#000000" : "#5b5b5b"
-                text: parent.text
-                font: parent.font
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-                wrapMode: Text.WordWrap
-            }
-        }
-
-        Button {
-            id: trainButton3
-            y: 20
-            width: 135
-            height: 30
-            text: qsTr(board.tile(25).Name)
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 10
-            anchors.left: parent.left
-            anchors.leftMargin: 10
-            enabled: false
-            focusPolicy: Qt.NoFocus
-            hoverEnabled: false
-            autoRepeat: false
-            autoExclusive: false
-            clip: false
-            highlighted: false
-            checked: false
-            checkable: false
-            contentItem: Text {
-                color: parent.enabled ? "#000000" : "#5b5b5b"
-                text: parent.text
-                font: parent.font
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-                wrapMode: Text.WordWrap
+            border.width: 1
+
+            Text {
+                id: text1
+                text: ""
+                anchors.left: parent.left
+                anchors.leftMargin: 10
+                anchors.verticalCenter: parent.verticalCenter
+                font.pixelSize: 16
             }
         }
 
-        Button {
-            id: trainButton4
-            x: 205
-            y: 16
-            width: 135
-            height: 30
-            text: qsTr(board.tile(35).Name)
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 10
-            anchors.right: parent.right
-            anchors.rightMargin: 10
-            enabled: false
-            focusPolicy: Qt.NoFocus
-            hoverEnabled: false
-            autoRepeat: false
-            autoExclusive: false
-            clip: false
-            highlighted: false
-            checked: false
-            checkable: false
-            contentItem: Text {
-                color: parent.enabled ? "#000000" : "#5b5b5b"
-                text: parent.text
-                font: parent.font
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-                wrapMode: Text.WordWrap
-            }
-        }
-    }
-
-    Rectangle {
-        id: utilities
-        x: 522
-        y: 514
-        width: 300
-        height: 90
-        color: "#999999"
-        border.width: 1
-
-        Button {
-            id: utilButton1
-            y: 15
-            width: 135
-            height: 70
-            text: qsTr(board.tile(12).Name)
-            anchors.left: parent.left
-            anchors.leftMargin: 10
-            anchors.verticalCenter: parent.verticalCenter
-            enabled: false
-            focusPolicy: Qt.NoFocus
-            hoverEnabled: false
-            autoRepeat: false
-            autoExclusive: false
-            clip: false
-            highlighted: false
-            checked: false
-            checkable: false
-            contentItem: Text {
-                color: parent.enabled ? "#000000" : "#5b5b5b"
-                text: parent.text
-                font: parent.font
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-                wrapMode: Text.WordWrap
-            }
-        }
-
-        Button {
-            id: utilButton2
+        Rectangle {
+            id: utilities
             x: 159
-            y: 15
-            width: 135
-            height: 70
-            text: qsTr(board.tile(28).Name)
+            y: 410
+            width: 300
+            height: 90
+            color: "#999999"
             anchors.right: parent.right
             anchors.rightMargin: 10
-            anchors.verticalCenter: parent.verticalCenter
-            enabled: false
-            focusPolicy: Qt.NoFocus
-            hoverEnabled: false
-            autoRepeat: false
-            clip: false
-            autoExclusive: false
-            highlighted: false
-            checked: false
-            checkable: false
-            contentItem: Text {
-                color: parent.enabled ? "#000000" : "#5b5b5b"
-                text: parent.text
-                font: parent.font
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-                wrapMode: Text.WordWrap
+            border.width: 1
+
+            Button {
+                id: utilButton1
+                y: 15
+                width: 135
+                height: 70
+                text: qsTr(board.tile(12).Name)
+                anchors.left: parent.left
+                anchors.leftMargin: 10
+                anchors.verticalCenter: parent.verticalCenter
+                enabled: false
+                focusPolicy: Qt.NoFocus
+                hoverEnabled: false
+                autoRepeat: false
+                autoExclusive: false
+                clip: false
+                highlighted: false
+                checked: false
+                checkable: false
+                contentItem: Text {
+                    color: parent.enabled ? "#000000" : "#5b5b5b"
+                    text: parent.text
+                    font: parent.font
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    elide: Text.ElideRight
+                    wrapMode: Text.WordWrap
+                }
+            }
+
+            Button {
+                id: utilButton2
+                x: 159
+                y: 15
+                width: 135
+                height: 70
+                text: qsTr(board.tile(28).Name)
+                anchors.right: parent.right
+                anchors.rightMargin: 10
+                anchors.verticalCenter: parent.verticalCenter
+                enabled: false
+                focusPolicy: Qt.NoFocus
+                hoverEnabled: false
+                autoRepeat: false
+                clip: false
+                autoExclusive: false
+                highlighted: false
+                checked: false
+                checkable: false
+                contentItem: Text {
+                    color: parent.enabled ? "#000000" : "#5b5b5b"
+                    text: parent.text
+                    font: parent.font
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    elide: Text.ElideRight
+                    wrapMode: Text.WordWrap
+                }
             }
         }
-    }
 
-    Rectangle {
-        id: textOutput
-        x: 202
-        y: 614
-        width: 507
-        height: 40
-        color: "#ffffff"
-        border.width: 1
-
-        Text {
-            id: text1
-            text: ""
+        Rectangle {
+            id: trains
+            y: 410
+            width: 300
+            height: 90
+            color: "#999999"
             anchors.left: parent.left
             anchors.leftMargin: 10
-            anchors.verticalCenter: parent.verticalCenter
-            font.pixelSize: 16
+            border.width: 1
+
+            Button {
+                id: trainButton1
+                width: 135
+                height: 30
+                text:  qsTr(board.tile(5).Name)
+                anchors.top: parent.top
+                anchors.topMargin: 10
+                anchors.left: parent.left
+                anchors.leftMargin: 10
+                enabled: false
+                focusPolicy: Qt.NoFocus
+                hoverEnabled: false
+                autoRepeat: false
+                clip: false
+                autoExclusive: false
+                highlighted: false
+                checked: false
+                checkable: false
+                contentItem: Text {
+                    color: parent.enabled ? "#000000" : "#5b5b5b"
+                    text: parent.text
+                    font: parent.font
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    elide: Text.ElideRight
+                    wrapMode: Text.WordWrap
+                }
+            }
+
+            Button {
+                id: trainButton2
+                width: 135
+                height: 30
+                text: qsTr(board.tile(15).Name)
+                anchors.top: parent.top
+                anchors.topMargin: 10
+                anchors.right: parent.right
+                anchors.rightMargin: 10
+                enabled: false
+                focusPolicy: Qt.NoFocus
+                hoverEnabled: false
+                autoRepeat: false
+                autoExclusive: false
+                clip: false
+                highlighted: false
+                checked: false
+                checkable: false
+                contentItem: Text {
+                    color: parent.enabled ? "#000000" : "#5b5b5b"
+                    text: parent.text
+                    font: parent.font
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    elide: Text.ElideRight
+                    wrapMode: Text.WordWrap
+                }
+            }
+
+            Button {
+                id: trainButton3
+                y: 20
+                width: 135
+                height: 30
+                text: qsTr(board.tile(25).Name)
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: 10
+                anchors.left: parent.left
+                anchors.leftMargin: 10
+                enabled: false
+                focusPolicy: Qt.NoFocus
+                hoverEnabled: false
+                autoRepeat: false
+                autoExclusive: false
+                clip: false
+                highlighted: false
+                checked: false
+                checkable: false
+                contentItem: Text {
+                    color: parent.enabled ? "#000000" : "#5b5b5b"
+                    text: parent.text
+                    font: parent.font
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    elide: Text.ElideRight
+                    wrapMode: Text.WordWrap
+                }
+            }
+
+            Button {
+                id: trainButton4
+                x: 205
+                y: 16
+                width: 135
+                height: 30
+                text: qsTr(board.tile(35).Name)
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: 10
+                anchors.right: parent.right
+                anchors.rightMargin: 10
+                enabled: false
+                focusPolicy: Qt.NoFocus
+                hoverEnabled: false
+                autoRepeat: false
+                autoExclusive: false
+                clip: false
+                highlighted: false
+                checked: false
+                checkable: false
+                contentItem: Text {
+                    color: parent.enabled ? "#000000" : "#5b5b5b"
+                    text: parent.text
+                    font: parent.font
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    elide: Text.ElideRight
+                    wrapMode: Text.WordWrap
+                }
+            }
         }
+
+        Rectangle {
+            id: purple
+            x: 159
+            y: 310
+            width: 300
+            height: 90
+            color: "#6633cc"
+            anchors.right: parent.right
+            anchors.rightMargin: 10
+            border.width: 1
+
+            Button {
+                id: button37
+                y: 15
+                width: 135
+                height: 70
+                text:  qsTr(board.tile(37).Name)
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.left: parent.left
+                anchors.leftMargin: 10
+                enabled: false
+                focusPolicy: Qt.NoFocus
+                hoverEnabled: false
+                autoRepeat: false
+                autoExclusive: false
+                clip: false
+                highlighted: false
+                checked: false
+                checkable: false
+                contentItem: Text {
+                    color: parent.enabled ? "#000000" : "#5b5b5b"
+                    text: parent.text
+                    font: parent.font
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    elide: Text.ElideRight
+                    wrapMode: Text.WordWrap
+                }
+                onClicked: {
+                    if(board.player(board.currentPlayerIndex).Colors[board.tile(37).Neighbourhood] === 3)
+                    {
+                        var cplayer = board.player(board.currentPlayerIndex)
+                        var ctile = board.tile(37)
+                        var color = ctile.Neighbourhood
+                        //consoleNot.push("Informacje o polu")
+                        //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
+                        if(ctile.BoughtedHouses < 4) {
+                            text1.text = ctile.buyHouse(cplayer)
+                        }
+                        else {
+                            text1.text = view.danied
+                        }
+                        monopolyStateMachine.updateMoney();
+                    }
+                    else text1.text = view.daniedNg
+                }
+            }
+
+            Button {
+                id: button39
+                x: -210
+                y: 15
+                width: 135
+                height: 70
+                text: qsTr(board.tile(39).Name)
+                anchors.right: parent.right
+                anchors.rightMargin: 10
+                enabled: false
+                focusPolicy: Qt.NoFocus
+                hoverEnabled: false
+                autoRepeat: false
+                clip: false
+                autoExclusive: false
+                anchors.verticalCenter: parent.verticalCenter
+                highlighted: false
+                checked: false
+                checkable: false
+                contentItem: Text {
+                    color: parent.enabled ? "#000000" : "#5b5b5b"
+                    text: parent.text
+                    font: parent.font
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    elide: Text.ElideRight
+                    wrapMode: Text.WordWrap
+                }
+                onClicked: {
+                    if(board.player(board.currentPlayerIndex).Colors[board.tile(39).Neighbourhood] === 3)
+                    {
+                        var cplayer = board.player(board.currentPlayerIndex)
+                        var ctile = board.tile(39)
+                        var color = ctile.Neighbourhood
+                        //consoleNot.push("Informacje o polu")
+                        //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
+                        if(ctile.BoughtedHouses < 4) {
+                            text1.text = ctile.buyHouse(cplayer)
+                        }
+                        else {
+                            text1.text = view.danied
+                        }
+                        monopolyStateMachine.updateMoney();
+                    }
+                    else text1.text = view.daniedNg
+                }
+            }
+
+        }
+
+        Rectangle {
+            id: green
+            y: 310
+            width: 300
+            height: 90
+            color: "#009966"
+            anchors.left: parent.left
+            anchors.leftMargin: 10
+            border.width: 1
+
+            Button {
+                id: button31
+                y: 15
+                width: 87
+                height: 70
+                text: qsTr(board.tile(31).Name)
+                anchors.left: parent.left
+                anchors.leftMargin: 10
+                anchors.verticalCenter: parent.verticalCenter
+                enabled: false
+                focusPolicy: Qt.NoFocus
+                hoverEnabled: false
+                autoRepeat: false
+                autoExclusive: false
+                clip: false
+                highlighted: false
+                checked: false
+                checkable: false
+                contentItem: Text {
+                    color: parent.enabled ? "#000000" : "#5b5b5b"
+                    text: parent.text
+                    font: parent.font
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    elide: Text.ElideRight
+                    wrapMode: Text.WordWrap
+                }
+                onClicked: {
+                    if(board.player(board.currentPlayerIndex).Colors[board.tile(31).Neighbourhood] === 3)
+                    {
+                        var cplayer = board.player(board.currentPlayerIndex)
+                        var ctile = board.tile(31)
+                        var color = ctile.Neighbourhood
+                        //consoleNot.push("Informacje o polu")
+                        //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
+                        if(ctile.BoughtedHouses < 4) {
+                            text1.text = ctile.buyHouse(cplayer)
+                        }
+                        else {
+                            text1.text = view.danied
+                        }
+                        monopolyStateMachine.updateMoney();
+                    }
+                    else text1.text = view.daniedNg
+                }
+            }
+
+            Button {
+                id: button32
+                x: -210
+                y: 15
+                width: 87
+                height: 70
+                text: qsTr(board.tile(32).Name)
+                enabled: false
+                focusPolicy: Qt.NoFocus
+                hoverEnabled: false
+                autoRepeat: false
+                clip: false
+                autoExclusive: false
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                highlighted: false
+                checked: false
+                checkable: false
+                contentItem: Text {
+                    color: parent.enabled ? "#000000" : "#5b5b5b"
+                    text: parent.text
+                    font: parent.font
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    elide: Text.ElideRight
+                    wrapMode: Text.WordWrap
+                }
+                onClicked: {
+                    if(board.player(board.currentPlayerIndex).Colors[board.tile(32).Neighbourhood] === 3)
+                    {
+                        var cplayer = board.player(board.currentPlayerIndex)
+                        var ctile = board.tile(32)
+                        var color = ctile.Neighbourhood
+                        //consoleNot.push("Informacje o polu")
+                        //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
+                        if(ctile.BoughtedHouses < 4) {
+                            text1.text = ctile.buyHouse(cplayer)
+                        }
+                        else {
+                            text1.text = view.danied
+                        }
+                        monopolyStateMachine.updateMoney();
+                    }
+                    else text1.text = view.daniedNg
+                }
+            }
+
+            Button {
+                id: button34
+                y: 15
+                width: 87
+                height: 70
+                text: qsTr(board.tile(34).Name)
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.right: parent.right
+                anchors.rightMargin: 10
+                enabled: false
+                focusPolicy: Qt.NoFocus
+                hoverEnabled: false
+                autoRepeat: false
+                autoExclusive: false
+                clip: false
+                anchors.leftMargin: 10
+                highlighted: false
+                checked: false
+                checkable: false
+                contentItem: Text {
+                    color: parent.enabled ? "#000000" : "#5b5b5b"
+                    text: parent.text
+                    font: parent.font
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    elide: Text.ElideRight
+                    wrapMode: Text.WordWrap
+                }
+                onClicked: {
+                    if(board.player(board.currentPlayerIndex).Colors[board.tile(34).Neighbourhood] === 3)
+                    {
+                        var cplayer = board.player(board.currentPlayerIndex)
+                        var ctile = board.tile(34)
+                        var color = ctile.Neighbourhood
+                        //consoleNot.push("Informacje o polu")
+                        //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
+                        if(ctile.BoughtedHouses < 4) {
+                            text1.text = ctile.buyHouse(cplayer)
+                        }
+                        else {
+                            text1.text = view.danied
+                        }
+                        monopolyStateMachine.updateMoney();
+                    }
+                    else text1.text = view.daniedNg
+                }
+
+            }
+        }
+
+        Rectangle {
+            id: yellow
+            x: 159
+            y: 210
+            width: 300
+            height: 90
+            color: "#ffff00"
+            anchors.right: parent.right
+            anchors.rightMargin: 10
+            border.width: 1
+
+            Button {
+                id: button26
+                y: 15
+                width: 87
+                height: 70
+                text: qsTr(board.tile(26).Name)
+                anchors.left: parent.left
+                anchors.leftMargin: 10
+                anchors.verticalCenter: parent.verticalCenter
+                enabled: false
+                focusPolicy: Qt.NoFocus
+                hoverEnabled: false
+                autoRepeat: false
+                autoExclusive: false
+                clip: false
+                highlighted: false
+                checked: false
+                checkable: false
+                contentItem: Text {
+                    color: parent.enabled ? "#000000" : "#5b5b5b"
+                    text: parent.text
+                    font: parent.font
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    elide: Text.ElideRight
+                    wrapMode: Text.WordWrap
+                }
+                onClicked: {
+                    if(board.player(board.currentPlayerIndex).Colors[board.tile(26).Neighbourhood] === 3)
+                    {
+                        var cplayer = board.player(board.currentPlayerIndex)
+                        var ctile = board.tile(26)
+                        var color = ctile.Neighbourhood
+                        //consoleNot.push("Informacje o polu")
+                        //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
+                        if(ctile.BoughtedHouses < 4) {
+                            text1.text = ctile.buyHouse(cplayer)
+                        }
+                        else {
+                            text1.text = view.danied
+                        }
+                        monopolyStateMachine.updateMoney();
+                    }
+                    else text1.text = view.daniedNg
+                }
+            }
+
+            Button {
+                id: button27
+                x: -210
+                y: 15
+                width: 87
+                height: 70
+                text: qsTr(board.tile(27).Name)
+                enabled: false
+                focusPolicy: Qt.NoFocus
+                hoverEnabled: false
+                autoRepeat: false
+                clip: false
+                autoExclusive: false
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                highlighted: false
+                checked: false
+                checkable: false
+                contentItem: Text {
+                    color: parent.enabled ? "#000000" : "#5b5b5b"
+                    text: parent.text
+                    font: parent.font
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    elide: Text.ElideRight
+                    wrapMode: Text.WordWrap
+                }
+                onClicked: {
+                    if(board.player(board.currentPlayerIndex).Colors[board.tile(27).Neighbourhood] === 3)
+                    {
+                        var cplayer = board.player(board.currentPlayerIndex)
+                        var ctile = board.tile(27)
+                        var color = ctile.Neighbourhood
+                        //consoleNot.push("Informacje o polu")
+                        //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
+                        if(ctile.BoughtedHouses < 4) {
+                            text1.text = ctile.buyHouse(cplayer)
+                        }
+                        else {
+                            text1.text = view.danied
+                        }
+                        monopolyStateMachine.updateMoney();
+                    }
+                    else text1.text = view.daniedNg
+                }
+            }
+
+            Button {
+                id: button29
+                y: 15
+                width: 87
+                height: 70
+                text: qsTr(board.tile(29).Name)
+                anchors.right: parent.right
+                anchors.rightMargin: 10
+                anchors.verticalCenter: parent.verticalCenter
+                enabled: false
+                focusPolicy: Qt.NoFocus
+                hoverEnabled: false
+                autoRepeat: false
+                autoExclusive: false
+                clip: false
+                anchors.leftMargin: 10
+                highlighted: false
+                checked: false
+                checkable: false
+                contentItem: Text {
+                    color: parent.enabled ? "#000000" : "#5b5b5b"
+                    text: parent.text
+                    font: parent.font
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    elide: Text.ElideRight
+                    wrapMode: Text.WordWrap
+                }
+                onClicked: {
+                    if(board.player(board.currentPlayerIndex).Colors[board.tile(29).Neighbourhood] === 3)
+                    {
+                        var cplayer = board.player(board.currentPlayerIndex)
+                        var ctile = board.tile(29)
+                        var color = ctile.Neighbourhood
+                        //consoleNot.push("Informacje o polu")
+                        //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
+                        if(ctile.BoughtedHouses < 4) {
+                            text1.text = ctile.buyHouse(cplayer)
+                        }
+                        else {
+                            text1.text = view.danied
+                        }
+                        monopolyStateMachine.updateMoney();
+                    }
+                    else text1.text = view.daniedNg
+                }
+            }
+        }
+
+        Rectangle {
+            id: red
+            y: 210
+            width: 300
+            height: 90
+            color: "#ff3333"
+            anchors.left: parent.left
+            anchors.leftMargin: 10
+            border.width: 1
+
+            Button {
+                id: button21
+                y: 15
+                width: 87
+                height: 70
+                text: qsTr(board.tile(21).Name)
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.left: parent.left
+                anchors.leftMargin: 10
+                enabled: false
+                focusPolicy: Qt.NoFocus
+                hoverEnabled: false
+                autoRepeat: false
+                autoExclusive: false
+                clip: false
+                highlighted: false
+                checked: false
+                checkable: false
+                contentItem: Text {
+                    color: parent.enabled ? "#000000" : "#5b5b5b"
+                    text: parent.text
+                    font: parent.font
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    elide: Text.ElideRight
+                    wrapMode: Text.WordWrap
+                }
+                onClicked: {
+                    if(board.player(board.currentPlayerIndex).Colors[board.tile(21).Neighbourhood] === 3)
+                    {
+                        var cplayer = board.player(board.currentPlayerIndex)
+                        var ctile = board.tile(21)
+                        var color = ctile.Neighbourhood
+                        //consoleNot.push("Informacje o polu")
+                        //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
+                        if(ctile.BoughtedHouses < 4) {
+                            text1.text = ctile.buyHouse(cplayer)
+                        }
+                        else {
+                            text1.text = view.danied
+                        }
+                        monopolyStateMachine.updateMoney();
+                    }
+                    else text1.text = view.daniedNg
+                }
+            }
+
+            Button {
+                id: button23
+                x: -210
+                y: 15
+                width: 87
+                height: 70
+                text: qsTr(board.tile(23).Name)
+                enabled: false
+                focusPolicy: Qt.NoFocus
+                hoverEnabled: false
+                autoRepeat: false
+                clip: false
+                autoExclusive: false
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                highlighted: false
+                checked: false
+                checkable: false
+                contentItem: Text {
+                    color: parent.enabled ? "#000000" : "#5b5b5b"
+                    text: parent.text
+                    font: parent.font
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    elide: Text.ElideRight
+                    wrapMode: Text.WordWrap
+                }
+                onClicked: {
+                    if(board.player(board.currentPlayerIndex).Colors[board.tile(23).Neighbourhood] === 3)
+                    {
+                        var cplayer = board.player(board.currentPlayerIndex)
+                        var ctile = board.tile(23)
+                        var color = ctile.Neighbourhood
+                        //consoleNot.push("Informacje o polu")
+                        //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
+                        if(ctile.BoughtedHouses < 4) {
+                            text1.text = ctile.buyHouse(cplayer)
+                        }
+                        else {
+                            text1.text = view.danied
+                        }
+                        monopolyStateMachine.updateMoney();
+                    }
+                    else text1.text = view.daniedNg
+                }
+            }
+
+            Button {
+                id: button24
+                y: 15
+                width: 87
+                height: 70
+                text: qsTr(board.tile(24).Name)
+                anchors.right: parent.right
+                anchors.rightMargin: 10
+                anchors.verticalCenter: parent.verticalCenter
+                enabled: false
+                focusPolicy: Qt.NoFocus
+                hoverEnabled: false
+                autoRepeat: false
+                autoExclusive: false
+                clip: false
+                highlighted: false
+                checked: false
+                checkable: false
+                contentItem: Text {
+                    color: parent.enabled ? "#000000" : "#5b5b5b"
+                    text: parent.text
+                    font: parent.font
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    elide: Text.ElideRight
+                    wrapMode: Text.WordWrap
+                }
+                onClicked: {
+                    if(board.player(board.currentPlayerIndex).Colors[board.tile(24).Neighbourhood] === 3)
+                    {
+                        var cplayer = board.player(board.currentPlayerIndex)
+                        var ctile = board.tile(24)
+                        var color = ctile.Neighbourhood
+                        //consoleNot.push("Informacje o polu")
+                        //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
+                        if(ctile.BoughtedHouses < 4) {
+                            text1.text = ctile.buyHouse(cplayer)
+                        }
+                        else {
+                            text1.text = view.danied
+                        }
+                        monopolyStateMachine.updateMoney();
+                    }
+                    else text1.text = view.daniedNg
+                }
+            }
+        }
+
+        Rectangle {
+            id: orange
+            x: 159
+            y: 110
+            width: 300
+            height: 90
+            color: "#ff6633"
+            anchors.right: parent.right
+            anchors.rightMargin: 10
+            border.width: 1
+
+            Button {
+                id: button16
+                y: 15
+                width: 87
+                height: 70
+                text:  qsTr(board.tile(16).Name)
+                anchors.left: parent.left
+                anchors.leftMargin: 10
+                anchors.verticalCenter: parent.verticalCenter
+                enabled: false
+                focusPolicy: Qt.NoFocus
+                hoverEnabled: false
+                autoRepeat: false
+                autoExclusive: false
+                clip: false
+                highlighted: false
+                checked: false
+                checkable: false
+                contentItem: Text {
+                    color: parent.enabled ? "#000000" : "#5b5b5b"
+                    text: parent.text
+                    font: parent.font
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    elide: Text.ElideRight
+                    wrapMode: Text.WordWrap
+                }
+                onClicked: {
+                    if(board.player(board.currentPlayerIndex).Colors[board.tile(16).Neighbourhood] === 3)
+                    {
+                        var cplayer = board.player(board.currentPlayerIndex)
+                        var ctile = board.tile(16)
+                        var color = ctile.Neighbourhood
+                        //consoleNot.push("Informacje o polu")
+                        //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
+                        if(ctile.BoughtedHouses < 4) {
+                            text1.text = ctile.buyHouse(cplayer)
+                        }
+                        else {
+                            text1.text = view.danied
+                        }
+                        monopolyStateMachine.updateMoney();
+                    }
+                    else text1.text = view.daniedNg
+                }
+            }
+
+            Button {
+                id: button18
+                x: -210
+                y: 15
+                width: 87
+                height: 70
+                text:  qsTr(board.tile(18).Name)
+                enabled: false
+                focusPolicy: Qt.NoFocus
+                hoverEnabled: false
+                autoRepeat: false
+                clip: false
+                autoExclusive: false
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                highlighted: false
+                checked: false
+                checkable: false
+                contentItem: Text {
+                    color: parent.enabled ? "#000000" : "#5b5b5b"
+                    text: parent.text
+                    font: parent.font
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    elide: Text.ElideRight
+                    wrapMode: Text.WordWrap
+                }
+                onClicked: {
+                    if(board.player(board.currentPlayerIndex).Colors[board.tile(18).Neighbourhood] === 3)
+                    {
+                        var cplayer = board.player(board.currentPlayerIndex)
+                        var ctile = board.tile(18)
+                        var color = ctile.Neighbourhood
+                        //consoleNot.push("Informacje o polu")
+                        //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
+                        if(ctile.BoughtedHouses < 4) {
+                            text1.text = ctile.buyHouse(cplayer)
+                        }
+                        else {
+                            text1.text = view.danied
+                        }
+                        monopolyStateMachine.updateMoney();
+                    }
+                    else text1.text = view.daniedNg
+                }
+            }
+
+            Button {
+                id: button19
+                y: 15
+                width: 87
+                height: 70
+                text:  qsTr(board.tile(19).Name)
+                anchors.right: parent.right
+                anchors.rightMargin: 10
+                anchors.verticalCenter: parent.verticalCenter
+                enabled: false
+                focusPolicy: Qt.NoFocus
+                hoverEnabled: false
+                autoRepeat: false
+                autoExclusive: false
+                clip: false
+                anchors.leftMargin: 10
+                highlighted: false
+                checked: false
+                checkable: false
+                contentItem: Text {
+                    color: parent.enabled ? "#000000" : "#5b5b5b"
+                    text: parent.text
+                    font: parent.font
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    elide: Text.ElideRight
+                    wrapMode: Text.WordWrap
+                }
+                onClicked: {
+                    if(board.player(board.currentPlayerIndex).Colors[board.tile(19).Neighbourhood] === 3)
+                    {
+                        var cplayer = board.player(board.currentPlayerIndex)
+                        var ctile = board.tile(19)
+                        var color = ctile.Neighbourhood
+                        //consoleNot.push("Informacje o polu")
+                        //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
+                        if(ctile.BoughtedHouses < 4) {
+                            text1.text = ctile.buyHouse(cplayer)
+                        }
+                        else {
+                            text1.text = view.danied
+                        }
+                        monopolyStateMachine.updateMoney();
+                    }
+                    else text1.text = view.daniedNg
+                }
+            }
+        }
+
+        Rectangle {
+            id: hotPink
+            y: 110
+            width: 300
+            height: 90
+            color: "#ff3366"
+            anchors.left: parent.left
+            anchors.leftMargin: 10
+            border.width: 1
+
+            Button {
+                id: button13
+                x: -300
+                y: 15
+                width: 87
+                height: 70
+                text:  qsTr(board.tile(13).Name)
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                enabled: false
+                focusPolicy: Qt.NoFocus
+                hoverEnabled: false
+                autoRepeat: false
+                clip: false
+                autoExclusive: false
+                highlighted: false
+                checked: false
+                checkable: false
+                contentItem: Text {
+                    color: parent.enabled ? "#000000" : "#5b5b5b"
+                    text: parent.text
+                    font: parent.font
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    elide: Text.ElideRight
+                    wrapMode: Text.WordWrap
+                }
+                onClicked: {
+                    if(board.player(board.currentPlayerIndex).Colors[board.tile(13).Neighbourhood] === 3)
+                    {
+                        var cplayer = board.player(board.currentPlayerIndex)
+                        var ctile = board.tile(13)
+                        var color = ctile.Neighbourhood
+                        //consoleNot.push("Informacje o polu")
+                        //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
+                        if(ctile.BoughtedHouses < 4) {
+                            text1.text = ctile.buyHouse(cplayer)
+                        }
+                        else {
+                            text1.text = view.danied
+                        }
+                        monopolyStateMachine.updateMoney();
+                    }
+                    else text1.text = view.daniedNg
+                }
+            }
+
+            Button {
+                id: button14
+                x: -210
+                y: 15
+                width: 87
+                height: 70
+                text:  qsTr(board.tile(14).Name)
+                anchors.right: parent.right
+                anchors.rightMargin: 10
+                enabled: false
+                focusPolicy: Qt.NoFocus
+                hoverEnabled: false
+                autoRepeat: false
+                autoExclusive: false
+                clip: false
+                anchors.verticalCenter: parent.verticalCenter
+                highlighted: false
+                checked: false
+                checkable: false
+                contentItem: Text {
+                    color: parent.enabled ? "#000000" : "#5b5b5b"
+                    text: parent.text
+                    font: parent.font
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    elide: Text.ElideRight
+                    wrapMode: Text.WordWrap
+                }
+                onClicked: {
+                    if(board.player(board.currentPlayerIndex).Colors[board.tile(14).Neighbourhood] === 3)
+                    {
+                        var cplayer = board.player(board.currentPlayerIndex)
+                        var ctile = board.tile(14)
+                        var color = ctile.Neighbourhood
+                        //consoleNot.push("Informacje o polu")
+                        //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
+                        if(ctile.BoughtedHouses < 4) {
+                            text1.text = ctile.buyHouse(cplayer)
+                        }
+                        else {
+                            text1.text = view.danied
+                        }
+                        monopolyStateMachine.updateMoney();
+                    }
+                    else text1.text = view.daniedNg
+                }
+            }
+
+            Button {
+                id: button11
+                y: 15
+                width: 87
+                height: 70
+                text:  qsTr(board.tile(11).Name)
+                anchors.verticalCenter: parent.verticalCenter
+                enabled: false
+                focusPolicy: Qt.NoFocus
+                hoverEnabled: false
+                anchors.left: parent.left
+                autoRepeat: false
+                clip: false
+                autoExclusive: false
+                highlighted: false
+                anchors.leftMargin: 10
+                checked: false
+                checkable: false
+                contentItem: Text {
+                    color: parent.enabled ? "#000000" : "#5b5b5b"
+                    text: parent.text
+                    font: parent.font
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    elide: Text.ElideRight
+                    wrapMode: Text.WordWrap
+                }
+                onClicked: {
+                    if(board.player(board.currentPlayerIndex).Colors[board.tile(11).Neighbourhood] === 3)
+                    {
+                        var cplayer = board.player(board.currentPlayerIndex)
+                        var ctile = board.tile(11)
+                        var color = ctile.Neighbourhood
+                        //consoleNot.push("Informacje o polu")
+                        //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
+                        if(ctile.BoughtedHouses < 4) {
+                            text1.text = ctile.buyHouse(cplayer)
+                        }
+                        else {
+                            text1.text = view.danied
+                        }
+                        monopolyStateMachine.updateMoney();
+                    }
+                    else text1.text = view.daniedNg
+                }
+            }
+        }
+
+        Rectangle {
+            id: blue
+            x: 330
+            y: 10
+            width: 300
+            height: 90
+            color: "#0066ff"
+            anchors.right: bg.right
+            anchors.rightMargin: 10
+            anchors.top: bg.top
+            anchors.topMargin: 10
+            border.width: 1
+
+            Button {
+                id: button6
+                y: 15
+                width: 87
+                height: 70
+                text: qsTr(board.tile(6).Name)
+                font.capitalization: Font.MixedCase
+                wheelEnabled: false
+                spacing: 4
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.left: parent.left
+                anchors.leftMargin: 10
+                enabled: false
+                focusPolicy: Qt.NoFocus
+                hoverEnabled: false
+                autoRepeat: false
+                autoExclusive: false
+                clip: false
+                highlighted: false
+                checked: false
+                checkable: false
+                contentItem: Text {
+                    color: parent.enabled ? "#000000" : "#5b5b5b"
+                    text: parent.text
+                    font: parent.font
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    elide: Text.ElideRight
+                    wrapMode: Text.WordWrap
+                }
+                onClicked: {
+                    if(board.player(board.currentPlayerIndex).Colors[board.tile(6).Neighbourhood] === 3)
+                    {
+                        var cplayer = board.player(board.currentPlayerIndex)
+                        var ctile = board.tile(6)
+                        var color = ctile.Neighbourhood
+                        //consoleNot.push("Informacje o polu")
+                        //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
+                        if(ctile.BoughtedHouses < 4) {
+                            text1.text = ctile.buyHouse(cplayer)
+                        }
+                        else {
+                            text1.text = view.danied
+                        }
+                        monopolyStateMachine.updateMoney();
+                    }
+                    else text1.text = view.daniedNg
+
+                }
+            }
+
+            Button {
+                id: button8
+                x: -210
+                y: 15
+                width: 87
+                height: 70
+                text: qsTr(board.tile(8).Name)
+                enabled: false
+                focusPolicy: Qt.NoFocus
+                hoverEnabled: false
+                autoRepeat: false
+                clip: false
+                autoExclusive: false
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+                highlighted: false
+                checked: false
+                checkable: false
+                contentItem: Text {
+                    color: parent.enabled ? "#000000" : "#5b5b5b"
+                    text: parent.text
+                    font: parent.font
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    elide: Text.ElideRight
+                    wrapMode: Text.WordWrap
+                }
+                onClicked: {
+                    if(board.player(board.currentPlayerIndex).Colors[board.tile(8).Neighbourhood] === 3)
+                    {
+                        var cplayer = board.player(board.currentPlayerIndex)
+                        var ctile = board.tile(8)
+                        var color = ctile.Neighbourhood
+                        //consoleNot.push("Informacje o polu")
+                        //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
+                        if(ctile.BoughtedHouses < 4) {
+                            text1.text = ctile.buyHouse(cplayer)
+                        }
+                        else {
+                            text1.text = view.danied
+                        }
+                        monopolyStateMachine.updateMoney();
+                    }
+                    else text1.text = view.daniedNg
+                }
+            }
+
+            Button {
+                id: button9
+                x: 196
+                y: 15
+                width: 87
+                height: 70
+                text: qsTr(board.tile(9).Name)
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.right: parent.right
+                anchors.rightMargin: 10
+                enabled: false
+                focusPolicy: Qt.NoFocus
+                hoverEnabled: false
+                autoRepeat: false
+                autoExclusive: false
+                clip: false
+                highlighted: false
+                checked: false
+                checkable: false
+                contentItem: Text {
+                    color: parent.enabled ? "#000000" : "#5b5b5b"
+                    text: parent.text
+                    font: parent.font
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    elide: Text.ElideRight
+                    wrapMode: Text.WordWrap
+                }
+                onClicked: {
+                    if(board.player(board.currentPlayerIndex).Colors[board.tile(9).Neighbourhood] === 3)
+                    {
+                        var cplayer = board.player(board.currentPlayerIndex)
+                        var ctile = board.tile(9)
+                        var color = ctile.Neighbourhood
+                        //consoleNot.push("Informacje o polu")
+                        //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
+                        if(ctile.BoughtedHouses < 4) {
+                            text1.text = ctile.buyHouse(cplayer)
+                        }
+                        else {
+                            text1.text = view.danied
+                        }
+                        monopolyStateMachine.updateMoney();
+                    }
+                    else text1.text = view.daniedNg
+                }
+            }
+        }
+
+        Rectangle {
+            id: brown
+            x: 10
+            y: 10
+            width: 300
+            height: 90
+            color: "#996600"
+            anchors.top: bg.top
+            anchors.topMargin: 10
+            anchors.left: bg.left
+            anchors.leftMargin: 10
+            border.width: 1
+
+            Button {
+                id: button1
+                y: 15
+                width: 135
+                height: 70
+                text: qsTr(board.tile(1).Name)
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.left: parent.left
+                anchors.leftMargin: 10
+                highlighted: false
+                hoverEnabled: false
+                focusPolicy: Qt.NoFocus
+                enabled: false
+                clip: false
+                checkable: false
+                checked: false
+                autoRepeat: false
+                autoExclusive: false
+                contentItem: Text {
+                    color: parent.enabled ? "#000000" : "#5b5b5b"
+                    text: parent.text
+                    font: parent.font
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    elide: Text.ElideRight
+                    wrapMode: Text.WordWrap
+
+                }
+                onClicked: {
+                    if(board.player(board.currentPlayerIndex).Colors[board.tile(1).Neighbourhood] === 2)
+                    {
+                        var cplayer = board.player(board.currentPlayerIndex)
+                        var ctile = board.tile(1)
+                        var color = ctile.Neighbourhood
+                        //consoleNot.push("Informacje o polu")
+                        //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
+                        if(ctile.BoughtedHouses < 4) {
+                            text1.text = ctile.buyHouse(cplayer)
+                        }
+                        else {
+                            text1.text = view.danied
+                        }
+                        monopolyStateMachine.updateMoney();
+                    }
+                    else text1.text = view.daniedNg
+                }
+            }
+
+            Button {
+                id: button3
+                x: 162
+                y: 15
+                width: 135
+                height: 70
+                text: qsTr(board.tile(3).Name)
+                anchors.verticalCenterOffset: 0
+                anchors.right: parent.right
+                anchors.rightMargin: 10
+                anchors.verticalCenter: parent.verticalCenter
+                enabled: false
+                focusPolicy: Qt.NoFocus
+                hoverEnabled: false
+                autoRepeat: false
+                autoExclusive: false
+                clip: false
+                highlighted: false
+                checked: false
+                checkable: false
+                contentItem: Text {
+                    color: parent.enabled ? "#000000" : "#5b5b5b"
+                    text: parent.text
+                    font: parent.font
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    elide: Text.ElideRight
+                    wrapMode: Text.WordWrap
+                }
+                onClicked: {
+                    if(board.player(board.currentPlayerIndex).Colors[board.tile(3).Neighbourhood] === 2)
+                    {
+                        var cplayer = board.player(board.currentPlayerIndex)
+                        var ctile = board.tile(3)
+                        var color = ctile.Neighbourhood
+                        //consoleNot.push("Informacje o polu")
+                        //consoleNot.push(ctile.Name + ", właściciel: Gracz" +  ctile.Owner.Name + ", kolor: " + color)
+                        if(ctile.BoughtedHouses < 4) {
+                            text1.text = ctile.buyHouse(cplayer)
+                        }
+                        else {
+                            text1.text = view.danied
+                        }
+                        monopolyStateMachine.updateMoney();
+                    }
+                    else text1.text = view.daniedNg
+
+                }
+            }
+        }
+
+        Button {
+            id: button
+            x: 893
+            y: 614
+            text: qsTr("Wyjdź")
+            anchors.right: parent.right
+            anchors.rightMargin: 10
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 10
+            font.weight: Font.ExtraLight
+            z: 2
+            onClicked: {
+                view.hide();
+            }
+        }
+
+
+
+
+
+
+
+
+
+
     }
+
 
 }
