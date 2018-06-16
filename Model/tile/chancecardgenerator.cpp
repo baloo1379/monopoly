@@ -29,22 +29,30 @@ QString ChanceCardGenerator::freeJail(Player *player)
 
 QString  ChanceCardGenerator::GenerateRandomCard(Player *player)
 {
-    int xyz = qrand()%5;
+    int xyz = qrand()%5+1;
+    QString result= "";
     switch(xyz)
     {
     case 1:
-        return goToJail(player);
+        result += goToJail(player);
         break;
     case 2:
-        return freeJail(player);
+        result += freeJail(player);
         break;
     case 3:
-        return bonusMoney(player);
+        result += bonusMoney(player);
+        break;
+    case 4:
+        result += bonusMoney(player);
+        break;
+    case 5:
+        result += freeJail(player);
         break;
     default:
-        //return "empty chance card";
+        result += "Nic nie wylosowano :(";
         break;
     }
+    return result;
 }
 
 

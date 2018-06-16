@@ -156,6 +156,16 @@ Item {
         color: "#ff0000"
         radius: 20
         border.width: 1
+
+        Text {
+            id: pawnId1
+            text: qsTr("1")
+            anchors.verticalCenterOffset: 0
+            anchors.horizontalCenterOffset: 0
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+            font.pixelSize: 14
+        }
     }
 
     Rectangle {
@@ -167,6 +177,16 @@ Item {
         color: "#00ff00"
         radius: 20
         border.width: 1
+
+        Text {
+            id: pawnId2
+            text: qsTr("2")
+            font.pixelSize: 14
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.verticalCenterOffset: 0
+            anchors.horizontalCenterOffset: 0
+            anchors.verticalCenter: parent.verticalCenter
+        }
     }
 
     Rectangle {
@@ -178,6 +198,16 @@ Item {
         color: "#0000ff"
         radius: 20
         border.width: 1
+
+        Text {
+            id: pawnId3
+            text: qsTr("3")
+            font.pixelSize: 14
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.verticalCenterOffset: 0
+            anchors.horizontalCenterOffset: 0
+            anchors.verticalCenter: parent.verticalCenter
+        }
     }
 
     Rectangle {
@@ -189,6 +219,16 @@ Item {
         color: "#fff000"
         radius: 20
         border.width: 1
+
+        Text {
+            id: pawnId4
+            text: qsTr("4")
+            font.pixelSize: 14
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.verticalCenterOffset: 0
+            anchors.horizontalCenterOffset: 0
+            anchors.verticalCenter: parent.verticalCenter
+        }
     }
 
 }

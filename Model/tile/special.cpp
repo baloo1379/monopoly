@@ -20,7 +20,7 @@ QString Special::actOnPlayer(Player *player)
     else if(Index() == 20) return "Darmowy parking";
     else {
         player->setIsInJail(true);
-        emit jailChanged();
+        player->setPosition(10);
         return "Idziesz do więzienia.";
     }
 }

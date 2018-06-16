@@ -23,89 +23,10 @@ Window {
     width: 1366
     height: 768
     //flags: Qt.WindowFullScreen
-    //visibility: Window.FullScreen
+    visibility: Window.FullScreen
     title: qsTr("Monopoly")
 
-    Item {
-        id: moneysFields
-        visible: false
 
-        Ekran {id: firstM ;x: 800;y: 28;visible: false
-
-            Label {
-                id: player1
-                x: 0
-                y: -13
-                text: qsTr("Gracz 1")
-            }}
-        Ekran {id: secondM ;x: 915;y: 28;visible: false
-
-            Label {
-                id: player2
-                x: 0
-                y: -13
-                text: qsTr("Gracz 2")
-            }}
-        Ekran {id: thirdM ;x: 800;y: 83;visible: false
-
-            Label {
-                id: player3
-                x: 0
-                y: -13
-                text: qsTr("Gracz 3")
-            }}
-
-        Ekran {id: fourthM ;x: 915;y: 83;visible: false
-
-            Label {
-                id: player4
-                x: 0
-                y: -13
-                text: qsTr("Gracz 4")
-            }}
-
-
-        function field(witch, text)
-        {
-            if(witch === 0)
-            {
-                firstM.text(text)
-            }
-            if(witch === 1)
-            {
-                secondM.text(text)
-            }
-            if(witch === 2)
-            {
-                thirdM.text(text)
-            }
-
-            if(witch === 3)
-            {
-                fourthM.text(text)
-            }
-        }
-        function visibility(witch)
-        {
-            if(witch === 0)
-            {
-                firstM.visible = true
-            }
-            if(witch === 1)
-            {
-                secondM.visible = true
-            }
-            if(witch === 2)
-            {
-                thirdM.visible = true
-            }
-
-            if(witch === 3)
-            {
-                fourthM.visible = true
-            }
-        }
-    }
 
     Button {
         id: closeButton
@@ -337,6 +258,14 @@ Window {
         z: 1
     }
 
+    MoneyView {
+        id: moneysFields
+        anchors.top: parent.top
+        anchors.topMargin: 0
+        anchors.right: parent.right
+        anchors.rightMargin: 0
+    }
+    /*
     StateMachine {
         id: monopolyStateMachine
         animated: true
@@ -353,6 +282,7 @@ Window {
             for(var q = 0; q < initialWizard.playersNo; q++)
             {
                 //console.log(q)
+                //console.log("Player: ", q, board.player(q))
                 moneysFields.field(q, board.player(q).Money)
             }
         }
@@ -370,9 +300,9 @@ Window {
             onEntered: {
                 console.log("gameWizard entered")
                 initialWizard.visible = true
-                //initialWizard.playersNo = 1
-                //initialWizard.playerNames = ["baloo"]
-                //form.playersNames = initialWizard.playerNames
+                initialWizard.playersNo = 4
+                initialWizard.playerNames = ["baloo", "darullef", "baatheo", " dalduk"]
+                form.playersNames = initialWizard.playerNames
             }
             onExited: {
                 console.log("gameWizard exited")
@@ -414,7 +344,13 @@ Window {
                 }
 
                 //board.player(0).isInJail = true
-                //board.player(0).outOfJailCard = false
+                board.player(0).outOfJailCard = false
+
+                board.tile(12).Owner  = board.player(1)
+                board.tile(28).Owner  = board.player(1)
+                board.player(1).Utilities++
+                board.player(1).Utilities++
+
                 consoleNot.visible = true
                 consoleNot.push("Witaj w Monopoly");
                 gameInitialization.next()
@@ -583,9 +519,12 @@ Window {
             }
             onEntered: {
                 console.log("playerTurn entered")
+                console.log("cpindex before: "+board.currentPlayerIndex)
                 if(board.currentPlayerIndex == initialWizard.playersNo-1) board.currentPlayerIndex = -1
                 board.currentPlayerIndex++
+                console.log("cpindex after: "+board.currentPlayerIndex)
                 monopolyStateMachine.updateMoney();
+                //console.log("cpindex after: "+board.currentPlayerIndex)
                 playerTurn.next()
             }
             onExited: {
@@ -593,5 +532,5 @@ Window {
             }
         }
     }
-
+*/
 }

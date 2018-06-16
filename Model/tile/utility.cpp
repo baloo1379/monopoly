@@ -41,17 +41,18 @@ QString Utility::actOnPlayer(Player *player)
     }
     else
     {
-        qDebug() << "rent" << Owner()->Name() << player->Name();
+
         int rentToPay = player->Position() - player->OldPosition();
-        if(player->Utilities()==1)
+        if(rentToPay < 0) rentToPay *= -1;
+        if(Owner()->Utilities()<=1)
         {
             rentToPay *= 4;
         }
-        if(player->Utilities()==2)
+        if(Owner()->Utilities()>1)
         {
             rentToPay *= 10;
         }
-
+        qDebug() << "rent" << Owner()->Name() << player->Name() << Owner()->Utilities() << rentToPay;
         player->setMoney(-rentToPay);
         Owner()->setMoney(rentToPay);
         return Name() + " posiada " + Owner()->Name() + ". " + player->Name() + " płaci $" + QString::number(rentToPay) + " czynszu.";
