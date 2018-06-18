@@ -69,6 +69,7 @@ void hardProperties(QVector<Tile*> &tiles)
 
 Board::Board(QObject *parent) : QObject(parent)
 {
+/*
     try
     {
         cpindex = 0;
@@ -157,28 +158,29 @@ Board::Board(QObject *parent) : QObject(parent)
             QString name = current.value("name").toString();
             m_tiles[id] = new Tax(id, name, TileType::Tiles::Tax, price);
         }
-        /*printing tiles
-        for(int i=0; i<tiles.size();i++)
-        {
-            if(tiles[i] == NULL) qDebug() << i << "empty";
-            else if(tiles[i]->Type() == TileType::Tiles::Street || tiles[i]->Type() == TileType::Tiles::Station || tiles[i]->Type() == TileType::Tiles::Utility)
-            {
-                Buyable *cur = dynamic_cast<Buyable*>(tiles[i]);
-                qDebug() << cur->Index() << cur->Name() << cur->Price();
-            }
-            else
-            {
-                qDebug() << tiles[i]->Index() << tiles[i]->Name();
-            }
-        }
-        */
+        //        printing tiles
+        //        for(int i=0; i<tiles.size();i++)
+        //        {
+        //            if(tiles[i] == NULL) qDebug() << i << "empty";
+        //            else if(tiles[i]->Type() == TileType::Tiles::Street || tiles[i]->Type() == TileType::Tiles::Station || tiles[i]->Type() == TileType::Tiles::Utility)
+        //            {
+        //                Buyable *cur = dynamic_cast<Buyable*>(tiles[i]);
+        //                qDebug() << cur->Index() << cur->Name() << cur->Price();
+        //            }
+        //            else
+        //            {
+        //                qDebug() << tiles[i]->Index() << tiles[i]->Name();
+        //            }
+        //        }
+
     }
     catch(QString error)
     {
         qDebug() << error;
         hardProperties(m_tiles);
     }
-
+*/
+    hardProperties(m_tiles);
 }
 
 int Board::currentPlayerIndex()

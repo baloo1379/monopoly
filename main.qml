@@ -318,9 +318,9 @@ Window {
             onEntered: {
                 console.log("gameWizard entered")
                 initialWizard.visible = true
-                initialWizard.playersNo = 4
-                initialWizard.playerNames = ["baloo", "darullef", "baatheo", "dalduk"]
-                form.playersNames = initialWizard.playerNames
+                //initialWizard.playersNo = 4
+                //initialWizard.playerNames = ["baloo", "darullef", "baatheo", "dalduk"]
+                //form.playersNames = initialWizard.playerNames
             }
             onExited: {
                 console.log("gameWizard exited")
@@ -362,12 +362,12 @@ Window {
                 }
 
                 //board.player(0).isInJail = true
-                board.player(0).outOfJailCard = false
+                //board.player(0).outOfJailCard = false
 
-                board.tile(12).Owner = board.player(1)
-                board.tile(28).Owner = board.player(1)
-                board.player(1).Utilities++
-                board.player(1).Utilities++
+                //board.tile(12).Owner = board.player(1)
+                //board.tile(28).Owner = board.player(1)
+                //board.player(1).Utilities++
+                //board.player(1).Utilities++
 
                 consoleNot.visible = true
                 consoleNot.push("Witaj w Monopoly");
