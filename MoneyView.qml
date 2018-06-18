@@ -15,7 +15,7 @@ Item {
         anchors.topMargin: 30
         anchors.left: parent.left
         anchors.leftMargin: 20
-        visible: true
+        visible: false
         playerNameLabel: "Gracz 1"
     }
 
@@ -25,7 +25,7 @@ Item {
         anchors.leftMargin: 140
         anchors.top: parent.top
         anchors.topMargin: 30
-        visible: true
+        visible: false
         playerNameLabel: "Gracz 2"
     }
 
@@ -35,7 +35,7 @@ Item {
         anchors.leftMargin: 20
         anchors.top: parent.top
         anchors.topMargin: 90
-        visible: true
+        visible: false
         playerNameLabel: "Gracz 3"
     }
 
@@ -45,7 +45,7 @@ Item {
         anchors.leftMargin: 140
         anchors.top: parent.top
         anchors.topMargin: 90
-        visible: true
+        visible: false
         playerNameLabel: "Gracz 4"
     }
 

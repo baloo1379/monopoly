@@ -317,6 +317,7 @@ Window {
             }
             onEntered: {
                 console.log("gameWizard entered")
+                console.log(board.tile(0).Name)
                 initialWizard.visible = true
                 //initialWizard.playersNo = 4
                 //initialWizard.playerNames = ["baloo", "darullef", "baatheo", "dalduk"]
@@ -343,12 +344,12 @@ Window {
                 console.log("gameInitialization entered")
 
                 for(var i=0; i<initialWizard.playersNo; i++) {
-                    console.log(i,form.playersNames[i])
+                    console.log("adding player id:",i,"name:",form.playersNames[i])
                     board.addPlayer(form.playersNames[i]);
                 }
 
                 for(var j=0; j<initialWizard.playersNo; j++) {
-                    console.log(board.player(j).Name);
+                    console.log("player",board.player(j).Name);
                 }
                 boardView.visible = true
                 menaging.visible = true
@@ -413,6 +414,7 @@ Window {
 
             onEntered: {
                 console.log("playerRoll entered")
+                console.log(board.currentPlayerIndex)
                 consoleNot.push("Gracz "+board.player(board.currentPlayerIndex).Name + " rzuca.")
                 monopolyStateMachine.updateMoney();
                 nextState.visible = false

@@ -18,6 +18,8 @@
 
 void hardProperties(QVector<Tile*> &tiles)
 {
+    tiles.resize(0);
+
     tiles.push_back(new Special(0,"Start", TileType::Tiles::Special));
 
     tiles.push_back(new Street(1, "Tężnie, Ciechocinek", TileType::Tiles::Street, 0, 0.6, QVector<float>({0.02, 0.1, 0.3, 0.9, 1.6, 2.5})));
@@ -69,7 +71,7 @@ void hardProperties(QVector<Tile*> &tiles)
 
 Board::Board(QObject *parent) : QObject(parent)
 {
-/*
+
     try
     {
         cpindex = 0;
@@ -79,7 +81,8 @@ Board::Board(QObject *parent) : QObject(parent)
         QString val;
         QFile file("properties.json");
         file.open(QIODevice::ReadOnly | QIODevice::Text);
-        if(!file.exists()) throw QString("File does not exists");
+        if(!file.exists()) throw QString("Board.cpp: File does not exists");
+        else qDebug()  << "Board.cpp:" <<  "Found properties.json. Using it.";
         val = file.readAll();
         file.close();
 
@@ -176,11 +179,9 @@ Board::Board(QObject *parent) : QObject(parent)
     }
     catch(QString error)
     {
-        qDebug() << error;
+        qDebug() << "Board.cpp:" << error;
         hardProperties(m_tiles);
     }
-*/
-    hardProperties(m_tiles);
 }
 
 int Board::currentPlayerIndex()
@@ -223,7 +224,7 @@ void Board::setDice(int value)
 void Board::addPlayer(QString name)
 {
     int index = m_players.size();
-    qDebug() << index << name;
+    qDebug()  << "Board.cpp:" <<  index << name;
     m_players.push_back(new Player(index, name));
 }
 
