@@ -1,5 +1,5 @@
 import QtQuick 2.10
-import QtQuick.Window 2.10
+import QtQuick.Window 2.11
 import QtQuick.Controls 2.2
 import QtQml.StateMachine 1.0
 
@@ -18,14 +18,31 @@ import Monopoly.NeighbourHoodType 1.0
 
 
 Window {
+    property real screenW: Screen.width
     id: mainWindows
     visible: true
     width: 1366
     height: 768
-    //flags: Qt.WindowFullScreen
-    visibility: Window.FullScreen
     title: qsTr("Monopoly")
-
+    flags: {
+        Qt.Window |
+        Qt.MSWindowsFixedSizeDialogHint |
+        Qt.CustomizeWindowHint |
+        Qt.WindowTitleHint |
+        Qt.WindowCloseButtonHint |
+        Qt.WindowMinimizeButtonHint |
+        Qt.WindowSystemMenuHint
+    }
+    visibility: {
+        if(mainWindows.screenW <= 1366) {
+            console.log("fullscreen")
+            return 5
+        }
+        else {
+            console.log("windowed")
+            return 2
+        }
+    }
 
 
     Button {
@@ -44,7 +61,7 @@ Window {
         id: nextState
         x: 915
         y: 143
-        text: qsTr("Next State")
+        text: qsTr("OK")
         visible: false
     }
 
@@ -260,12 +277,13 @@ Window {
 
     MoneyView {
         id: moneysFields
+        anchors.left: boardView.left
+        anchors.leftMargin: 768
         anchors.top: parent.top
         anchors.topMargin: 0
-        anchors.right: parent.right
-        anchors.rightMargin: 0
+        visible: false
     }
-    /*
+
     StateMachine {
         id: monopolyStateMachine
         animated: true
@@ -301,7 +319,7 @@ Window {
                 console.log("gameWizard entered")
                 initialWizard.visible = true
                 initialWizard.playersNo = 4
-                initialWizard.playerNames = ["baloo", "darullef", "baatheo", " dalduk"]
+                initialWizard.playerNames = ["baloo", "darullef", "baatheo", "dalduk"]
                 form.playersNames = initialWizard.playerNames
             }
             onExited: {
@@ -346,8 +364,8 @@ Window {
                 //board.player(0).isInJail = true
                 board.player(0).outOfJailCard = false
 
-                board.tile(12).Owner  = board.player(1)
-                board.tile(28).Owner  = board.player(1)
+                board.tile(12).Owner = board.player(1)
+                board.tile(28).Owner = board.player(1)
                 board.player(1).Utilities++
                 board.player(1).Utilities++
 
@@ -453,21 +471,11 @@ Window {
                 console.log("playerLanded entered")
                 consoleNot.push(board.tile(board.player(board.currentPlayerIndex).Position).Index + " " + board.tile(board.player(board.currentPlayerIndex).Position).Name + "\n" + board.tile(board.player(board.currentPlayerIndex).Position).actOnPlayer(board.player(board.currentPlayerIndex)))
                 pawnView.move(board.currentPlayerIndex, board.player(board.currentPlayerIndex).Position)
-                if (board.tile(board.player(board.currentPlayerIndex).Position).Type == TileType.Street || board.tile(board.player(board.currentPlayerIndex).Position).Type == TileType.Utility || board.tile(board.player(board.currentPlayerIndex).Position).Type == TileType.Station) {
+                if (board.tile(board.player(board.currentPlayerIndex).Position).Type === TileType.Street || board.tile(board.player(board.currentPlayerIndex).Position).Type === TileType.Utility || board.tile(board.player(board.currentPlayerIndex).Position).Type === TileType.Station) {
                     if(board.tile(board.player(board.currentPlayerIndex).Position).isAvaible) {
                         buyButton.visible = true
-                        nextState.text = "Cancel"
-                    }
-                    else {
-                        nextState.text = "Ok"
                     }
                 }
-                else
-                {
-                    nextState.text = "Ok"
-                }
-
-
                 nextState.visible = true
                 monopolyStateMachine.updateMoney();
             }
@@ -532,5 +540,4 @@ Window {
             }
         }
     }
-*/
 }

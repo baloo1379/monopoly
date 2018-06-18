@@ -6,6 +6,9 @@ Item {
     id: firstM
     width: 100
     height: 30
+
+    property string playerNameLabel: "value"
+
     Rectangle {
         width: parent.width
         height: parent.height
@@ -29,7 +32,7 @@ Item {
     Label {
         id: playerNameLabel
         y: 0
-        text: qsTr("Gracz 1")
+        text: parent.playerNameLabel
         anchors.left: parent.left
         anchors.leftMargin: 3
         anchors.bottom: parent.top

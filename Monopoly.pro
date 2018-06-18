@@ -51,3 +51,5 @@ HEADERS += \
     Model/tile/chancecard.h \
     Model/gamewizardform.h \
     Model/enums.h
+
+RC_ICONS = monopoly.ico

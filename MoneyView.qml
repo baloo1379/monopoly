@@ -16,11 +16,7 @@ Item {
         anchors.left: parent.left
         anchors.leftMargin: 20
         visible: true
-        Component{
-            onCompleted: {
-                firstM.playerNameLabel = ("Gracz 1")
-            }
-        }
+        playerNameLabel: "Gracz 1"
     }
 
     Ekran {
@@ -30,11 +26,7 @@ Item {
         anchors.top: parent.top
         anchors.topMargin: 30
         visible: true
-        Component{
-            onCompleted: {
-                firstM.playerNameLabel = ("Gracz 2")
-            }
-        }
+        playerNameLabel: "Gracz 2"
     }
 
     Ekran {
@@ -44,11 +36,7 @@ Item {
         anchors.top: parent.top
         anchors.topMargin: 90
         visible: true
-        Component{
-            onCompleted: {
-                firstM.playerNameLabel = ("Gracz 3")
-            }
-        }
+        playerNameLabel: "Gracz 3"
     }
 
     Ekran {
@@ -58,11 +46,7 @@ Item {
         anchors.top: parent.top
         anchors.topMargin: 90
         visible: true
-        Component{
-            onCompleted: {
-                firstM.playerNameLabel = ("Gracz 4")
-            }
-        }
+        playerNameLabel: "Gracz 4"
     }
 
 

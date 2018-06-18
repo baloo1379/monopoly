@@ -15,5 +15,6 @@
         <file>Fonts/KabobExtrabold Regular.ttf</file>
         <file>Fonts/KabobLight Regular.ttf</file>
         <file>MoneyView.qml</file>
+        <file>monopoly.ico</file>
     </qresource>
 </RCC>

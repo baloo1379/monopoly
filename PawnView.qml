@@ -153,7 +153,7 @@ Item {
         y: 692
         width: 20
         height: 20
-        color: "#ff0000"
+        color: "#ff6868"
         radius: 20
         border.width: 1
 
@@ -174,7 +174,7 @@ Item {
         y: 692
         width: 20
         height: 20
-        color: "#00ff00"
+        color: "#66ff66"
         radius: 20
         border.width: 1
 
@@ -195,7 +195,7 @@ Item {
         y: 717
         width: 20
         height: 20
-        color: "#0000ff"
+        color: "#6666ff"
         radius: 20
         border.width: 1
 
@@ -216,7 +216,7 @@ Item {
         y: 717
         width: 20
         height: 20
-        color: "#fff000"
+        color: "#fff966"
         radius: 20
         border.width: 1
 
