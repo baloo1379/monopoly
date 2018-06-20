@@ -1,0 +1,404 @@
+{
+    "Monopoly": {
+        "Special": [
+            {
+                "id": 0,
+                "name": "Start"
+			},
+            {
+                "id": 10,
+                "name": "Więzienie"
+			},
+            {
+                "id": 20,
+                "name": "Darmowy parking"
+			},
+            {
+                "id": 30,
+                "name": "Idź do więzienia"
+			}
+		],
+        "Street": [
+            {
+                "id": 1,
+                "name": "Gdynia",
+                "color": "brown",
+                "price": 60,
+                "rent": {
+                    "empty": 2,
+                    "one": 10,
+                    "two": 30,
+                    "three": 90,
+                    "four": 160,
+                    "hotel": 250
+                }
+			},
+            {
+                "id": 3,
+                "name": "Tajpej",
+                "color": "brown",
+                "price": 60,
+                "rent": {
+                    "empty": 4,
+                    "one": 20,
+                    "two": 60,
+                    "three": 180,
+                    "four": 320,
+                    "hotel": 450
+                }
+			},
+            {
+                "id": 6,
+                "name": "Tokio",
+                "color": "blue",
+                "price": 100,
+                "rent": {
+                    "empty": 6,
+                    "one": 30,
+                    "two": 90,
+                    "three": 270,
+                    "four": 420,
+                    "hotel": 550
+                }
+			},
+            {
+                "id": 8,
+                "name": "Barcelona",
+                "color": "blue",
+                "price": 100,
+                "rent": {
+                    "empty": 6,
+                    "one": 30,
+                    "two": 90,
+                    "three": 270,
+                    "four": 420,
+                    "hotel": 550
+                }
+			},
+            {
+                "id": 9,
+                "name": "Ateny",
+                "color": "blue",
+                "price": 120,
+                "rent": {
+                    "empty": 8,
+                    "one": 40,
+                    "two": 100,
+                    "three": 300,
+                    "four": 450,
+                    "hotel": 600
+                }
+			},
+            {
+                "id": 11,
+                "name": "Stambuł",
+                "color": "hotPink",
+                "price": 140,
+                "rent": {
+                    "empty": 10,
+                    "one": 50,
+                    "two": 150,
+                    "three": 450,
+                    "four": 625,
+                    "hotel": 750
+                }
+			},
+            {
+                "id": 13,
+                "name": "Kijów",
+                "color": "hotPink",
+                "price": 140,
+                "rent": {
+                    "empty": 10,
+                    "one": 50,
+                    "two": 150,
+                    "three": 450,
+                    "four": 625,
+                    "hotel": 750
+                }
+			},
+            {
+                "id": 14,
+                "name": "Toronto",
+                "color": "hotPink",
+                "price": 160,
+                "rent": {
+                    "empty": 12,
+                    "one": 60,
+                    "two": 188,
+                    "three": 500,
+                    "four": 700,
+                    "hotel": 900
+                }
+			},
+            {
+                "id": 16,
+                "name": "Rzym",
+                "color": "orange",
+                "price": 180,
+                "rent": {
+                    "empty": 14,
+                    "one": 70,
+                    "two": 200,
+                    "three": 550,
+                    "four": 750,
+                    "hotel": 950
+                }
+			},
+            {
+                "id": 18,
+                "name": "Szanghaj",
+                "color": "orange",
+                "price": 180,
+                "rent": {
+                    "empty": 14,
+                    "one": 70,
+                    "two": 200,
+                    "three": 550,
+                    "four": 750,
+                    "hotel": 950
+                }
+			},
+            {
+                "id": 19,
+                "name": "Vancouver",
+                "color": "orange",
+                "price": 200,
+                "rent": {
+                    "empty": 16,
+                    "one": 80,
+                    "two": 220,
+                    "three": 600,
+                    "four": 800,
+                    "hotel": 1000
+                }
+			},
+            {
+                "id": 21,
+                "name": "Sydney",
+                "color": "red",
+                "price": 220,
+                "rent": {
+                    "empty": 18,
+                    "one": 90,
+                    "two": 250,
+                    "three": 700,
+                    "four": 875,
+                    "hotel": 1050
+                }
+			},
+            {
+                "id": 23,
+                "name": "Nowy Jork",
+                "color": "red",
+                "price": 220,
+                "rent": {
+                    "empty": 18,
+                    "one": 90,
+                    "two": 250,
+                    "three": 700,
+                    "four": 875,
+                    "hotel": 1050
+                }
+			},
+            {
+                "id": 24,
+                "name": "Londyn",
+                "color": "red",
+                "price": 240,
+                "rent": {
+                    "empty": 20,
+                    "one": 100,
+                    "two": 300,
+                    "three": 750,
+                    "four": 925,
+                    "hotel": 1100
+                }
+			},
+            {
+                "id": 26,
+                "name": "Pekin",
+                "color": "yellow",
+                "price": 260,
+                "rent": {
+                    "empty": 22,
+                    "one": 110,
+                    "two": 330,
+                    "three": 800,
+                    "four": 975,
+                    "hotel": 1150
+                }
+			},
+            {
+                "id": 27,
+                "name": "Hongkong",
+                "color": "yellow",
+                "price": 260,
+                "rent": {
+                    "empty": 22,
+                    "one": 110,
+                    "two": 330,
+                    "three": 800,
+                    "four": 975,
+                    "hotel": 1150
+                }
+			},
+            {
+                "id": 29,
+                "name": "Jerozolima",
+                "color": "yellow",
+                "price": 280,
+                "rent": {
+                    "empty": 24,
+                    "one": 120,
+                    "two": 360,
+                    "three": 850,
+                    "four": 1025,
+                    "hotel": 1200
+                }
+			},
+            {
+                "id": 31,
+                "name": "Paryż",
+                "color": "green",
+                "price": 300,
+                "rent": {
+                    "empty": 26,
+                    "one": 130,
+                    "two": 390,
+                    "three": 900,
+                    "four": 1100,
+                    "hotel": 1275
+                }
+			},
+            {
+                "id": 32,
+                "name": "Belgrad",
+                "color": "green",
+                "price": 300,
+                "rent": {
+                    "empty": 26,
+                    "one": 130,
+                    "two": 390,
+                    "three": 900,
+                    "four": 1100,
+                    "hotel": 1275
+                }
+			},
+            {
+                "id": 34,
+                "name": "Kapsztad",
+                "color": "green",
+                "price": 320,
+                "rent": {
+                    "empty": 28,
+                    "one": 150,
+                    "two": 450,
+                    "three": 1000,
+                    "four": 1200,
+                    "hotel": 1400
+                }
+			},
+            {
+                "id": 37,
+                "name": "Ryga",
+                "color": "purple",
+                "price": 350,
+                "rent": {
+                    "empty": 35,
+                    "one": 175,
+                    "two": 500,
+                    "three": 1100,
+                    "four": 1300,
+                    "hotel": 1500
+                }
+			},
+            {
+                "id": 39,
+                "name": "Montreal",
+                "color": "purple",
+                "price": 400,
+                "rent": {
+                    "empty": 50,
+                    "one": 200,
+                    "two": 600,
+                    "three": 1300,
+                    "four": 1500,
+                    "hotel": 1700
+                }
+			}
+		],
+        "Chance": [
+            {
+                "id": 2,
+                "name": "Kasa Społeczna"
+			},
+            {
+                "id": 7,
+                "name": "Szansa"
+			},
+            {
+                "id": 17,
+                "name": "Kasa społeczna"
+			},
+            {
+                "id": 22,
+                "name": "Szansa"
+			},
+            {
+                "id": 33,
+                "name": "Kasa społeczna"
+			},
+            {
+                "id": 36,
+                "name": "Szansa"
+			}
+		],
+        "Tax": [
+            {
+                "id": 4,
+                "name": "Podatek Dochodowy",
+                "value": 200
+			},
+            {
+                "id": 38,
+                "name": "Domiar podatkowy",
+                "value": 100
+			}
+		],
+        "Station": [
+            {
+                "id": 5,
+                "name": "Pociąg",
+                "price": 200
+			},
+            {
+                "id": 15,
+                "name": "Lotnisko",
+                "price": 200
+			},
+            {
+                "id": 25,
+                "name": "Transatlantyk",
+                "price": 200
+			},
+            {
+                "id": 35,
+                "name": "Prom kosmiczny",
+                "price": 200
+			}
+		],
+        "Utility": [
+            {
+                "id": 12,
+                "name": "Elektrownia wiatrowa",
+                "price": 200
+			},
+            {
+                "id": 28,
+                "name": "Elektrownia jądrowa",
+                "price": 200
+			}
+		]
+    }
+}
